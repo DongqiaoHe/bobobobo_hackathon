@@ -25,15 +25,8 @@ public class MomentController {
     @PostMapping
     public ResponseEntity<?> createMessage(@RequestHeader("Authorization") String token, @RequestBody Moment moment) {
         String userID = JwtUtil.getUserIDFromToken(token);
-        Map<String, Object> responseMap = new HashMap<>();
-        responseMap.put("message", "The username or password is wrong!");
-        if( Integer.parseInt(userID) == moment.getUser_id()){
-            // 使用requestData进行业务逻辑...
-            momentService.postMoment(moment);
-            return new ResponseEntity<>(HttpStatus.CREATED); // 或者返回其他响应
-        }
-        }
-
-    //获得用户的发布
-
+        moment.setUser_id(Integer.parseInt(userID));
+        momentService.postMoment(moment);
+        return new ResponseEntity<>(HttpStatus.CREATED); // 或者返回其他响应
+    }
 }
