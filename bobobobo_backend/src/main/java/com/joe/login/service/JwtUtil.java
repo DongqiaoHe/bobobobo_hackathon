@@ -10,16 +10,16 @@ public class JwtUtil {
 
     private static final String SECRET_KEY = "Bobobo"; // 这应该是一个复杂的密钥，并从配置或环境变量中获取
 
-    public static String generateToken(String username) {
+    public static String generateToken(int id) {
         return Jwts.builder()
-                .setSubject(username)  // 设置token的主体（通常是用户的标识）
+                .setSubject(id+"")  // 设置token的主体（通常是用户的标识）
                 .setIssuedAt(new Date())  // 设置token的签发时间
                 .setExpiration(new Date(System.currentTimeMillis() + 3 * 86400000))  // 设置token的过期时间，两天
                 .signWith(SignatureAlgorithm.HS256, SECRET_KEY)  // 使用HS256算法和你的密钥签名token
                 .compact();  // 构建token
     }
 
-    public static String getUsernameFromToken(String token) {
+    public static String getUserIDFromToken(String token) {
         try {
             // 使用Jwts.parser()方法来解析传递的token
             Claims claims = Jwts.parser()

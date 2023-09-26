@@ -4,7 +4,7 @@ import lombok.Data;
 
 @Data
 public class Moment {
-    private Integer id;
+    private int id;
 
     private String topic;
 
