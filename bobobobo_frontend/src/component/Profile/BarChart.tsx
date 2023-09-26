@@ -13,16 +13,6 @@ import Title from './Title'
 const data = [
   { month: 'January', amount: 5000 },
   { month: 'February', amount: 4800 },
-  { month: 'March', amount: 5200 },
-  { month: 'April', amount: 5500 },
-  { month: 'May', amount: 5300 },
-  { month: 'June', amount: 5400 },
-  { month: 'July', amount: 5700 },
-  { month: 'August', amount: 5800 },
-  { month: 'September', amount: 5900 },
-  { month: 'October', amount: 6000 },
-  { month: 'November', amount: 6100 },
-  { month: 'December', amount: 6200 },
 ]
 
 export default function BarChartComponent() {
