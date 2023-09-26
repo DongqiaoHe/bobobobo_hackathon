@@ -1,4 +1,4 @@
-import { createContext } from "react";
+import { createContext, useContext } from "react";
 
 export type AnswerType = {
   id: number,
@@ -13,17 +13,27 @@ export type QuestionType = {
 }
 
 export type QuizContextType = {
+  current: number | null,
   quiz: QuestionType[] | null,
   getQuiz: () => Promise<void>,
+  hasNext: () => boolean,
+  hasPrev: () => boolean,
+  next: () => void,
+  prev: () => void,
 }
 
 export const QuizContext = createContext<QuizContextType>({
+  current: null,
   quiz: null,
   getQuiz: () => Promise.resolve(),
+  hasNext: () => false,
+  hasPrev: () => false,
+  next: () => {},
+  prev: () => {},
 });
 
 export const useQuiz = () => {
-  return createContext(QuizContext);
+  return useContext(QuizContext);
 }
 
 export const QuizProvider = (
@@ -31,8 +41,13 @@ export const QuizProvider = (
 ) => {
   return (
     <QuizContext.Provider value={{
-      quiz: null,
+      current: null,
+      quiz: [],
       getQuiz: () => Promise.resolve(),
+      hasNext: () => false,
+      hasPrev: () => false,
+      next: () => {},
+      prev: () => {},
     }}>
       {children}
     </QuizContext.Provider>

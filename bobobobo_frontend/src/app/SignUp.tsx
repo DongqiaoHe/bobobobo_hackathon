@@ -12,7 +12,7 @@ import Box from '@mui/material/Box';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
-import {signup} from '../../utils/userApi';
+import {signup} from '../utils/userApi';
 import {useState} from "react";
 
 export default function SignUp() {
