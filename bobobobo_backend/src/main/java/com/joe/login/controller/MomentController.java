@@ -11,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @RestController
@@ -27,10 +28,19 @@ public class MomentController {
 
 
     @PostMapping
-    public ResponseEntity<?> createMessage(@RequestHeader("Authorization") String token, @RequestBody Moment moment) {
+    public ResponseEntity<?> createMoment(@RequestHeader("Authorization") String token, @RequestBody Moment moment) {
         String username = JwtUtil.getUserIDFromToken(token);
         moment.setUser_id(userService.getIdByUsername(username));
         momentService.postMoment(moment);
         return new ResponseEntity<>(HttpStatus.CREATED); // 或者返回其他响应
+    }
+
+
+    @GetMapping
+    public ResponseEntity<?> getMoment(@RequestHeader("Authorization") String token) {
+        String username = JwtUtil.getUserIDFromToken(token);
+        int userId = userService.getIdByUsername(username);
+        List<Moment> data = momentService.getMoment(userId);
+        return new ResponseEntity<>(data, HttpStatus.CREATED); // 或者返回其他响应
     }
 }

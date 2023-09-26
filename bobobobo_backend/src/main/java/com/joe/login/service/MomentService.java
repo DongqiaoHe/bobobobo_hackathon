@@ -7,6 +7,8 @@ import org.apache.ibatis.annotations.Mapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class MomentService {
 
@@ -18,7 +20,9 @@ public class MomentService {
         momentMapper.postMoment(moment);
     }
 
-    public Object[] getMoment(){
-        return null;
+    public List<Moment> getMoment(int id){
+        System.out.println("service: "+id);
+        return momentMapper.getMoments(id);
+
     }
 }
