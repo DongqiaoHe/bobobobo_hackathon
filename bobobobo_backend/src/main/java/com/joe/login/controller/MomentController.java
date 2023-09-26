@@ -1,13 +1,16 @@
 package com.joe.login.controller;
 
+import com.joe.login.bean.Comment;
 import com.joe.login.bean.Moment;
 import com.joe.login.bean.User;
+import com.joe.login.service.CommentService;
 import com.joe.login.service.JwtUtil;
 import com.joe.login.service.MomentService;
 import com.joe.login.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -21,6 +24,9 @@ public class MomentController {
 
     @Autowired
     UserService userService;
+
+    @Autowired
+    CommentService commentService;
 
     //用户发布
 
@@ -54,4 +60,14 @@ public class MomentController {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST); // 或者返回其他响应
         }
     }
+
+    @PostMapping("/comment")
+    public ResponseEntity<?> addComment(@RequestHeader("Authorization") String token, @RequestBody Comment comment) {
+        String username = JwtUtil.getUserUserFromToken(token);
+        int id = userService.getIdByUsername(username);
+        comment.setUser_id(id);
+        commentService.postComment(comment);
+        return new ResponseEntity<>(HttpStatus.CREATED); // 或者返回其他响应
+    }
+
 }
