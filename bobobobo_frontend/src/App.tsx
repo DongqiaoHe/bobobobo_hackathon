@@ -4,14 +4,20 @@ import "./App.css";
 import Login from "./app/Login";
 import Blog from "./component/blog/Blog";
 import SignUp from "./app/SignUp";
-import Profile from "./component/Profile/Profile";
+import Profile from "./app/Profile";
 import { AuthProvider } from "./store/AuthContext";
 import { QuizProvider } from "./store/QuizContext";
 import { QuizScreen } from "./app/Quiz";
+import { ThemeProvider } from "@emotion/react";
+import { CssBaseline, createTheme } from "@mui/material";
 
 function App() {
+
+  const theme = createTheme();
   return (
-    <AuthProvider>
+    <ThemeProvider theme={theme}>
+      <CssBaseline />
+      <AuthProvider>
       <QuizProvider>
         <BrowserRouter>
           <Routes>
@@ -25,6 +31,7 @@ function App() {
         </BrowserRouter>
       </QuizProvider>
     </AuthProvider>
+    </ThemeProvider>
   );
 }
 
