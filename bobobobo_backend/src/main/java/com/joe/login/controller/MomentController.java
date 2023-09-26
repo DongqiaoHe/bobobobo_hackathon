@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/api/moment")
@@ -62,12 +63,21 @@ public class MomentController {
     }
 
     @PostMapping("/comment")
-    public ResponseEntity<?> addComment(@RequestHeader("Authorization") String token, @RequestBody Comment comment) {
+    public ResponseEntity<?> postComment(@RequestHeader("Authorization") String token, @RequestBody Comment comment) {
         String username = JwtUtil.getUserUserFromToken(token);
         int id = userService.getIdByUsername(username);
         comment.setUser_id(id);
         commentService.postComment(comment);
         return new ResponseEntity<>(HttpStatus.CREATED); // 或者返回其他响应
+    }
+
+    @GetMapping("/comment")
+    public ResponseEntity<?> getComment(@RequestHeader("Authorization") String token, @RequestBody Map<String, Object> payload) {
+        String username = JwtUtil.getUserUserFromToken(token);
+        int id = userService.getIdByUsername(username);
+        List<Comment> data =  commentService.getComment((Integer) payload.get("moment_id"));
+        System.out.println(data);
+        return new ResponseEntity<>(data,HttpStatus.CREATED); // 或者返回其他响应
     }
 
 }
