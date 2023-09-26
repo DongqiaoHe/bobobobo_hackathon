@@ -19,6 +19,7 @@ import ChevronLeftIcon from '@mui/icons-material/ChevronLeft'
 import NotificationsIcon from '@mui/icons-material/Notifications'
 import { mainListItems, secondaryListItems } from './listItems'
 import Chart from './Chart'
+import BarChart from './BarChart'
 import Deposits from './Deposits'
 import Orders from './Orders'
 
@@ -166,8 +167,14 @@ export default function Profile() {
           <Toolbar />
           <Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>
             <Grid container spacing={3}>
+              {/* Recent Orders */}
+              <Grid item xs={12}>
+                <Paper sx={{ p: 2, display: 'flex', flexDirection: 'column' }}>
+                  <Orders />
+                </Paper>
+              </Grid>
               {/* Chart */}
-              <Grid item xs={12} md={8} lg={9}>
+              <Grid item xs={12} md={7} lg={9}>
                 <Paper
                   sx={{
                     p: 2,
@@ -178,8 +185,8 @@ export default function Profile() {
                   <Chart />
                 </Paper>
               </Grid>
-              {/* Recent Deposits */}
-              <Grid item xs={12} md={4} lg={3}>
+              {/* Bar Chart */}
+              <Grid item xs={12} md={5} lg={3}>
                 <Paper
                   sx={{
                     p: 2,
@@ -187,13 +194,7 @@ export default function Profile() {
                     flexDirection: 'column',
                     height: 240,
                   }}>
-                  <Deposits />
-                </Paper>
-              </Grid>
-              {/* Recent Orders */}
-              <Grid item xs={12}>
-                <Paper sx={{ p: 2, display: 'flex', flexDirection: 'column' }}>
-                  <Orders />
+                  <BarChart />
                 </Paper>
               </Grid>
             </Grid>
