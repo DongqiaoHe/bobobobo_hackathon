@@ -23,7 +23,7 @@ public class GPTController {
         Map<String, Object> responseMap = new HashMap<>();
         String response = gptService.chat(question);
         responseMap.put("response", response);
-        if (response == null) {
+        if (response == null || response.isEmpty()) {
             return ResponseEntity.badRequest().body(responseMap);
         } else {
             return ResponseEntity.ok(responseMap);
