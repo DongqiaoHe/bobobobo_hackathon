@@ -1,8 +1,9 @@
 import React from 'react';
 import { Routes, Route, BrowserRouter } from 'react-router-dom';
 import './App.css';
-import Login from './component/login';
+import Login from './component/login/Login';
 import Blog from './component/blog/Blog';
+import SignUp from './component/signup/SignUp';
 
 function App() {
   return (
@@ -15,9 +16,9 @@ function App() {
                   )}
               />
               <Route
-                  path="/login"
+                  path="/register"
                   element={(
-                      <Login />
+                      <SignUp />
                   )}
               />
               <Route

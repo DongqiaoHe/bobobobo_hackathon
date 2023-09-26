@@ -19,8 +19,8 @@ function Copyright(props: any) {
       align="center"
       {...props}>
       {'Copyright © '}
-      <Link color="inherit" href="https://mui.com/">
-        Your Website
+      <Link color="inherit" href="https://www.unimelb.edu.au/">
+          The University of Melbourne
       </Link>{' '}
       {new Date().getFullYear()}
       {'.'}
@@ -111,12 +111,12 @@ export default function Login() {
               </Button>
               <Grid container>
                 <Grid item xs>
-                  <Link href="#" variant="body2">
+                  <Link href="src/component/login/Login#" variant="body2">
                     Forgot password?
                   </Link>
                 </Grid>
                 <Grid item>
-                  <Link href="#" variant="body2">
+                  <Link href="/register" variant="body2">
                     {"Don't have an account? Sign Up"}
                   </Link>
                 </Grid>
