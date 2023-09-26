@@ -1,10 +1,10 @@
-package com.hackathon.bobobobo;
+package com.joe.login;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class BoboboboApplicationTests {
+class LoginApplicationTests {
 
     @Test
     void contextLoads() {
