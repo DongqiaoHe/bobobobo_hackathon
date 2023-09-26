@@ -10,9 +10,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 @RestController
 @RequestMapping("/api/moment")
@@ -29,7 +27,7 @@ public class MomentController {
 
     @PostMapping
     public ResponseEntity<?> createMoment(@RequestHeader("Authorization") String token, @RequestBody Moment moment) {
-        String username = JwtUtil.getUserIDFromToken(token);
+        String username = JwtUtil.getUserUserFromToken(token);
         moment.setUser_id(userService.getIdByUsername(username));
         momentService.postMoment(moment);
         return new ResponseEntity<>(HttpStatus.CREATED); // 或者返回其他响应
@@ -38,9 +36,22 @@ public class MomentController {
 
     @GetMapping
     public ResponseEntity<?> getMoment(@RequestHeader("Authorization") String token) {
-        String username = JwtUtil.getUserIDFromToken(token);
+        String username = JwtUtil.getUserUserFromToken(token);
         int userId = userService.getIdByUsername(username);
         List<Moment> data = momentService.getMoment(userId);
-        return new ResponseEntity<>(data, HttpStatus.CREATED); // 或者返回其他响应
+        return new ResponseEntity<>(data, HttpStatus.ACCEPTED); // 或者返回其他响应
+    }
+
+    @PatchMapping("/star")
+    public ResponseEntity<?> addStar(@RequestHeader("Authorization") String token, @RequestBody Moment starRequest) {
+        String username = JwtUtil.getUserUserFromToken(token);
+        System.out.println(starRequest);
+        if(username!=null){
+            momentService.addStar(starRequest);
+            return new ResponseEntity<>(HttpStatus.ACCEPTED); // 或者返回其他响应
+        }else{
+            System.out.println("moment controller:gg");
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST); // 或者返回其他响应
+        }
     }
 }

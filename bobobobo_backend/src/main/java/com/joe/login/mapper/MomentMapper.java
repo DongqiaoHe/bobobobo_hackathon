@@ -4,10 +4,9 @@ import com.joe.login.bean.Moment;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
 
 import java.util.List;
-
-import static net.sf.jsqlparser.parser.feature.Feature.insert;
 
 @Mapper
 public interface MomentMapper {
@@ -17,5 +16,8 @@ public interface MomentMapper {
 
     @Select("select * from moment where user_id = #{id}")
     List<Moment> getMoments(int id);
+
+    @Update("UPDATE moment SET star_num = star_num + 1 where id = #{id}")
+    void addStar(Moment starRequest);
 
 }

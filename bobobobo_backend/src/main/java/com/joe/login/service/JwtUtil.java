@@ -19,7 +19,7 @@ public class JwtUtil {
                 .compact();  // 构建token
     }
 
-    public static String getUserIDFromToken(String token) {
+    public static String getUserUserFromToken(String token) {
         try {
             // 使用Jwts.parser()方法来解析传递的token
             Claims claims = Jwts.parser()
@@ -36,3 +36,5 @@ public class JwtUtil {
         }
     }
 }
+
+//eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ6YW5lIiwiaWF0IjoxNjk1NzE2NDY4LCJleHAiOjE2OTU5NzU2Njh9.opUiD_lV3Cn4qBY4LTZQ6cDjHjIP_UuJhBq2bUa_cw8

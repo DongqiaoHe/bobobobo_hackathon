@@ -2,8 +2,6 @@ package com.joe.login.service;
 
 import com.joe.login.bean.Moment;
 import com.joe.login.mapper.MomentMapper;
-import com.joe.login.mapper.UserMapper;
-import org.apache.ibatis.annotations.Mapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -23,6 +21,9 @@ public class MomentService {
     public List<Moment> getMoment(int id){
         System.out.println("service: "+id);
         return momentMapper.getMoments(id);
+    }
 
+    public void addStar(Moment starRequest) {
+        momentMapper.addStar(starRequest);
     }
 }
