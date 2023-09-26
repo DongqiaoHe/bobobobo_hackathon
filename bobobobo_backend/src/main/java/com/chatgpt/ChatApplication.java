@@ -1,16 +1,12 @@
-package com.joe.login;
+package com.chatgpt;
 
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-@MapperScan("com.joe.login.mapper")
-public class LoginApplication {
-
+public class ChatApplication {
     public static void main(String[] args) {
-        SpringApplication.run(LoginApplication.class, args);
-
+        SpringApplication.run(ChatApplication.class, args);
     }
-
 }
