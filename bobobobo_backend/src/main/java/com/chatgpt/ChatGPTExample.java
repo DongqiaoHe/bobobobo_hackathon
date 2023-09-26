@@ -1,6 +1,7 @@
 package com.chatgpt;
 
 import com.google.gson.Gson;
+import com.utils.LoadConfig;
 import org.apache.http.HttpEntity;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpPost;
@@ -9,23 +10,24 @@ import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.util.EntityUtils;
 import org.apache.logging.log4j.message.Message;
+import org.apache.logging.log4j.util.PropertiesUtil;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 
 public class ChatGPTExample {
     private final String host = "https://api.openai.com/v1/chat/completions";
     private String messageText = "hello, how are you?";
     private float temperature = 0.7f;
-    private int maxTokens = 100;
+    private int maxTokens = 3000;
     private String model = "gpt-3.5-turbo";
-    private String apiKey = "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";
+    // 从resource目录下的config.properties中读取配置
+    private String apiKey = LoadConfig.getConfig("api_key");
 
-    private String prompt = "You are chatting with an AI assistant. The assistant is helpful, creative, clever, and very friendly.";
+    private String prompt = "You are chatting assistant to help our client. Client will talk something about their story or event" +
+            "According to the content, give a further specific suggestions to reduce the carbon footprint. " +
+            "Answer the question with around 250 words.";
 
     public void setMessage(String message) {
         this.messageText = message;
@@ -46,9 +48,8 @@ public class ChatGPTExample {
     }
 
     public String sendRequest() throws IOException {
-        CloseableHttpClient httpclient = HttpClients.createDefault();
 
-        try {
+        try (CloseableHttpClient httpclient = HttpClients.createDefault()) {
             HttpPost httpPost = new HttpPost(host);
 
             String jsonString = formRequestStringBody();
@@ -60,22 +61,20 @@ public class ChatGPTExample {
             requestEntity.setContentType("application/json");
             httpPost.setEntity(requestEntity);
 
-            httpPost.addHeader("Authorization", "Bearer "+apiKey);
+            httpPost.addHeader("Authorization", "Bearer " + apiKey);
 
-            CloseableHttpResponse response = httpclient.execute(httpPost);
-
-            try {
+            try (CloseableHttpResponse response = httpclient.execute(httpPost)) {
                 HttpEntity entity = response.getEntity();
                 if (entity != null) {
                     String result = EntityUtils.toString(entity);
                     System.out.println(result);
                     return result;
                 }
-            } finally {
-                response.close();
+            } catch (Exception e) {
+                e.printStackTrace();
             }
-        } finally {
-            httpclient.close();
+        } catch (Exception e) {
+            e.printStackTrace();
         }
         return null;
     }
@@ -93,8 +92,7 @@ public class ChatGPTExample {
 
 
         Gson gson = new Gson();
-        String jsonString = gson.toJson(payload);
-        return jsonString;
+        return gson.toJson(payload);
     }
 
 
