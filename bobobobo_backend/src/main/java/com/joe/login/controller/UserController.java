@@ -27,7 +27,7 @@ public class UserController {
         User loggedInUser = userService.login(user.getUsername(), user.getPassword());
         System.out.println("user controller login");
         if (loggedInUser != null) {
-            String token = JwtUtil.generateToken(user.getId());
+            String token = JwtUtil.generateToken(user.getUsername());
             responseMap.put("token", token);
             return new ResponseEntity<>(responseMap, HttpStatus.OK);
         }

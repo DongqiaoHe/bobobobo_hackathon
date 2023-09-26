@@ -14,7 +14,7 @@ public class MomentService {
     private MomentMapper momentMapper;
 
     public void postMoment(Moment moment){
-        System.out.println("service"+moment);
+        System.out.println("service: "+moment);
         momentMapper.postMoment(moment);
     }
 

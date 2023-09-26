@@ -31,6 +31,13 @@ public class UserService {
         return null;
     }
 
+    public String getUsernameById(int id){
+        return userMapper.findByUsernameById(id);
+    }
+
+    public int getIdByUsername(String username){
+        return userMapper.findByIdByUsername(username);
+    }
 
 
 
