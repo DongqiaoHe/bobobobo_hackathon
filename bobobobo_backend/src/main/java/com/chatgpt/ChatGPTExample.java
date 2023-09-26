@@ -25,42 +25,36 @@ public class ChatGPTExample {
     private String model = "gpt-3.5-turbo";
     private String apiKey = "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";
 
+    private String prompt = "You are chatting with an AI assistant. The assistant is helpful, creative, clever, and very friendly.";
+
     public void setMessage(String message) {
         this.messageText = message;
     }
 
-    public void sendRequest() throws IOException {
+    private Map<String, Object> setUserMessages(String message) {
+        Map<String, Object> messageMap = new HashMap<>();
+        messageMap.put("role", "user");
+        messageMap.put("content", message);
+        return messageMap;
+    }
+
+    private Map<String, Object> setSystemPrompt(String message) {
+        Map<String, Object> messageMap = new HashMap<>();
+        messageMap.put("role", "system");
+        messageMap.put("content", message);
+        return messageMap;
+    }
+
+    public String sendRequest() throws IOException {
         CloseableHttpClient httpclient = HttpClients.createDefault();
 
         try {
             HttpPost httpPost = new HttpPost(host);
 
-            Map<String, Object> message = new HashMap<>();
-            message.put("role", "user");
-            message.put("content", messageText);
-
-            List<Map<String, Object>> messages = new ArrayList<>();
-            messages.add(message);
-
-            Map<String, Object> payload = new HashMap<>();
-            payload.put("messages", messages);
-            payload.put("temperature", temperature);
-            payload.put("max_tokens", maxTokens);
-            payload.put("model", model);
-
-            Gson gson = new Gson();
-            String jsonString = gson.toJson(payload);
+            String jsonString = formRequestStringBody();
 
             StringEntity requestEntity = new StringEntity(
                     jsonString,
-//                    "{\"messages\": [{\"role\": \"user\", \"content\": \"Hello, how are you?\"}], " +
-//                            "\"temperature\": 0.7, " +
-//                            "\"max_tokens\": 100, " +
-//                            "\"model\": \"gpt-3.5-turbo\"}",
-//                    "{\"messages\": [{\"role\": \"user\", \"content\": \""+ message +"\"}], " +
-//                            "\"temperature\": "+temperature+", " +
-//                            "\"max_tokens\": "+maxTokens+", " +
-//                            "\"model\": \""+model+"\"}",
                     "UTF-8"
             );
             requestEntity.setContentType("application/json");
@@ -75,6 +69,7 @@ public class ChatGPTExample {
                 if (entity != null) {
                     String result = EntityUtils.toString(entity);
                     System.out.println(result);
+                    return result;
                 }
             } finally {
                 response.close();
@@ -82,6 +77,24 @@ public class ChatGPTExample {
         } finally {
             httpclient.close();
         }
+        return null;
+    }
+
+    private String formRequestStringBody() {
+        List<Map<String, Object>> messages = new ArrayList<>();
+        messages.add(setSystemPrompt(prompt));
+        messages.add(setUserMessages(messageText));
+
+        Map<String, Object> payload = new HashMap<>();
+        payload.put("messages", messages);
+        payload.put("temperature", temperature);
+        payload.put("max_tokens", maxTokens);
+        payload.put("model", model);
+
+
+        Gson gson = new Gson();
+        String jsonString = gson.toJson(payload);
+        return jsonString;
     }
 
 
