@@ -76,7 +76,7 @@ export function QuizScreen() {
       <PageContainer>
         <Paper
           sx={{
-            p: 2,
+            p: 3,
             display: "flex",
             flexDirection: "column",
             alignItems: "center",
@@ -114,7 +114,7 @@ export function QuizScreen() {
               <div style={{
                 display: "flex",
                 flexDirection: "row",
-                gap: 8,
+                gap: 24,
                 marginTop: 16,
               }}>
                 {hasPrev && (
@@ -141,11 +141,29 @@ export function QuizScreen() {
                     alignSelf: "flex-end"
                   }} variant="contained" onClick={() => {
                     setFinished(true);
+                    let tempScore = 0;
+                    Object.entries(quizAnswers).map(([questionId, answerId]) => {
+                      const question = tempQuiz.find(
+                        (question) => question.id === parseInt(questionId)
+                      );
+                      if (!question) {
+                        throw new Error("Question not found");
+                      }
+                      const correctAnswerId = question.answers.find(
+                        (answer:any) => answer.correct
+                      )?.id;
+                      if (!correctAnswerId) {
+                        throw new Error("Correct answer not found");
+                      }
+                      return answerId === correctAnswerId ? BASE_SCORE : 0;
+                    })
+                    .forEach((score) => {
+                      tempScore += score;
+                    });
                     setScore(
-                      Object.values(quizAnswers).filter(
-                        (answer) => tempQuiz.find((question) => question.id === answer)?.answers.find((answer:any) => answer.correct)?.id === answer
-                      ).length * 5
+                      tempScore
                     );
+                    setQuizAnswers({})
                   }}>
                     Finish
                   </Button>
