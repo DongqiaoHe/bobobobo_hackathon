@@ -119,15 +119,21 @@ const CarbonCalculator = () => {
         setSelectedTimeFrame(parseInt(v));
     };
     const handleAddButtonClick = () => {
-        const selectedActivityObject = ApplianceWattage.find((activity) => activity.name === currentActivity);
+        const existingActivityIndex = inputtedActivities.findIndex(
+            (activity: { activity: any; }) => activity.activity === currentActivity
+        );
 
-        if (selectedActivityObject && timeOfUsage > 0) {
+        if (existingActivityIndex !== -1 && timeOfUsage > 0) {
+            // do nothing
+        } else if (timeOfUsage > 0) {
+            const indexAppliance = ApplianceWattage.findIndex((activity) => activity.name === currentActivity);
+
             setInputtedActivities([
                 ...inputtedActivities,
                 {
                     activity: currentActivity,
                     hours: timeOfUsage,
-                    carbon: selectedActivityObject.kilowatt * timeOfUsage * 0.85,
+                    carbon: ApplianceWattage[indexAppliance].kilowatt * timeOfUsage * 0.85 || 0,
                 },
             ]);
         }
@@ -360,11 +366,16 @@ const CarbonCalculator = () => {
     }
     const activityDropDownMenu = () => {
         return (
-            <div>
+            <div style={{
+                display: 'flex',
+                flexDirection: 'column', // Stack children vertically
+                justifyContent: 'center',
+                alignItems: 'center'
+            }}>
                 {userInputTrackActivity()}
                 <br /><br/>
                 {addBtn()}
-                <br /><br />
+                <br/>
                 {inputtedActivities.length > 0 && showActivitiesEntered()}
                 {carbonCalculatedForActivities()}
             </div>
@@ -372,7 +383,8 @@ const CarbonCalculator = () => {
     };
     const rightPanelImg = () => {
         return (
-            <div style={{ flex: 1, padding: '20px' }}>
+            <div style={{ flex: 1, padding: '20px', display: 'flex', flexDirection: 'column', justifyContent: 'center',
+                alignItems: 'center', }}>
                 <img
                     src={carbonFootprintLogo}
                     alt="carbonFootprintLogo"
@@ -498,22 +510,14 @@ const CarbonCalculator = () => {
                                         <>
                                             <br/>
                                             <BarChart
-                                                width={500}
+                                                width={450}
                                                 height={300}
                                                 data={inputtedActivities}
-                                                margin={{
-                                                    top: 5,
-                                                    right: 30,
-                                                    bottom: 5,
-                                                }}
-                                                barSize={20}
+                                                barSize={15}
                                             >
                                                 <XAxis
                                                     dataKey="activity"
-                                                    scale="point"
-                                                    padding={{ right: 10 }}
                                                 />
-                                                <YAxis color='white'/>
                                                 <Tooltip formatter={tooltipFormatter}/>
                                                 <Bar dataKey="carbon" fill="#6a8d6d" background={{ fill: '#eee' }} />
                                             </BarChart>
@@ -591,7 +595,9 @@ const CarbonCalculator = () => {
                                 <DividerWithText text="●・○・●・○・●" />
                                 <br/>
                                 {appBar()}
-                                <Container maxWidth="md" style={{ marginTop: "20px" }}>
+                                <Container maxWidth="md" style={{display: 'flex', flexDirection: 'column', justifyContent: 'center',
+                                    alignItems: 'center'}}>
+                                    <br/>
                                     {showActivityDropdown && activityDropDownMenu()}
                                     {showUtilityFields && userInputTrackUtilityBill()}
                                 </Container>
@@ -607,4 +613,3 @@ const CarbonCalculator = () => {
 };
 
 export default CarbonCalculator;
-
