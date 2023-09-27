@@ -25,7 +25,7 @@ export default function LandingPage() {
         navigate('/blog');
     }
     const onClickCarbon = () => {
-        navigate('/');  //need to change
+        navigate('/carbon');
     }
     const onClickAvatar = () => {
         navigate('/profile');

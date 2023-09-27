@@ -1,6 +1,7 @@
+
 import axios from 'axios';
 
-const baseUrl = 'http://124.222.146.116:8881/api';
+const baseUrl = 'http://localhost:8881/api';
 
 axios.defaults.baseURL = baseUrl;
 
@@ -29,6 +30,4 @@ axios.interceptors.response.use(
     },
 );
 
-export const signup = (username:string, password:string) => axios.post(`/user/register`, {username, password});
-
-export const login = (username:string, password:string) => axios.post(`/user/login`, {username, password});
+export const askgpt = (message:string) => axios.post(`/gpt/ask`, message);

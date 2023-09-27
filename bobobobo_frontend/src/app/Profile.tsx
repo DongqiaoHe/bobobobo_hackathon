@@ -10,9 +10,11 @@ import Link from '@mui/material/Link'
 import Chart from '../component/Profile/Chart'
 import BarChart from '../component/Profile/BarChart'
 import Orders from '../component/Profile/Orders'
+import ChatBox from '../component/Profile/ChatBox'
 import Header from '../component/Header'
 import { Button } from '@mui/material'
 import { PageContainer } from '../component/PageContainer'
+import eco from '../image/eco.png'
 
 interface AppBarProps extends MuiAppBarProps {
   open?: boolean
@@ -49,10 +51,14 @@ export default function Profile() {
               </Paper>
             </Grid>
           <Grid item xs={3}>
-            <Paper sx={{ p: 2, flexDirection: 'column' }}>
+            <Paper sx={{ p: 2, height: 250 }}>
               <Typography variant="h6" >
                 Sustainability Q&A
               </Typography>
+              <div>
+                Feel free to ask a question below!
+                <img src={eco} style={{width: '100%', height: 150}} />
+              </div>
             </Paper>
           </Grid>
           {/* Chart */}
@@ -77,6 +83,17 @@ export default function Profile() {
                 height: 300,
               }}>
               <BarChart />
+            </Paper>
+          </Grid>
+          <Grid item xs={12} md={5} lg={3}>
+            <Paper
+              sx={{
+                p: 2,
+                display: 'flex',
+                flexDirection: 'column',
+                height: 300,
+              }}>
+              <ChatBox />
             </Paper>
           </Grid>
         </Grid>

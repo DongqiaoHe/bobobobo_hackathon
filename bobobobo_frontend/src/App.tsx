@@ -12,6 +12,7 @@ import { ThemeProvider } from '@emotion/react'
 import { CssBaseline, createTheme } from '@mui/material'
 import LandingPage from './app/Landing'
 import Store from './component/Store/Store'
+import CarbonCalculator from './component/carbonCalculator/CarbonCalculator'
 
 function App() {
   const theme = createTheme()
@@ -29,6 +30,7 @@ function App() {
               <Route path="/profile" element={<Profile />} />
               <Route path="/quiz" element={<QuizScreen />} />
               <Route path="/store" element={<Store />} />
+              <Route path="/carbon" element={<CarbonCalculator />} />
               <Route path="*">"404 Not Found"</Route>
             </Routes>
           </BrowserRouter>
