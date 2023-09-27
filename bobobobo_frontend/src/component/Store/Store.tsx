@@ -18,12 +18,21 @@ import CardContent from '@mui/material/CardContent'
 import CardMedia from '@mui/material/CardMedia'
 import Typography from '@mui/material/Typography'
 import { CardActionArea } from '@mui/material'
+import img_biodegradable_cleaning_agent from './image/biodegradable_cleaning_agent.jpg'
+import img_Solar_Powered_Flashlight from './image/Solar_Powered_Flashlight.jpg'
+import img_Bamboo_Cutlery_Set from './image/Bamboo_Cutlery_Set.png'
+import img_Reusable_Shopping_Bag from './image/Reusable_Shopping_Bag.png'
+import img_Solar_Powered_Portable_Charger from './image/Solar_Powered_Portable_Charger.png'
+import img_Water_Saving_Shower_Head from './image/Water_Saving_Shower_Head.png'
+import img_LED_Energy_Saving_Bulb from './image/LED_Energy_Saving_Bulb.jpg'
+import img_Organic_Cotton_T_Shirt from './image/Organic_Cotton_T-Shirt.jpg'
+import img_Manual_Coffee_Grinder from './image/Manual_Coffee_Grinder.jpg'
 
 const mainFeaturedPost = {
   title: 'Biodegradable Cleaning Agent',
   description:
     'Only $5! Free from harmful chemicals and environmentally friendly, suitable for household cleaning.',
-  image: 'https://source.unsplash.com/random?forest',
+  image: img_biodegradable_cleaning_agent,
   imageText: 'main image description',
   linkText: 'Continue reading…',
 }
@@ -34,7 +43,7 @@ const featuredPosts = [
     price: '$25 AUD',
     description:
       'A flashlight that charges using solar energy, providing up to 6 hours of continuous use when fully charged.',
-    image: 'https://source.unsplash.com/random?recycle',
+    image: img_Solar_Powered_Flashlight,
     imageLabel: 'Image Text',
   },
   {
@@ -42,7 +51,7 @@ const featuredPosts = [
     price: '$15 AUD',
     description:
       'Renewable and biodegradable cutlery made from bamboo, including forks, spoons, and chopsticks.',
-    image: 'https://source.unsplash.com/random?water',
+    image: img_Bamboo_Cutlery_Set,
     imageLabel: 'Image Text',
   },
   {
@@ -50,7 +59,7 @@ const featuredPosts = [
     price: '$10 AUD',
     description:
       'Made from recyclable materials, designed to reduce the use of single-use plastic bags.',
-    image: 'https://source.unsplash.com/random?recycle',
+    image: img_Reusable_Shopping_Bag,
     imageLabel: 'Image Text',
   },
   {
@@ -58,7 +67,7 @@ const featuredPosts = [
     price: '$60 AUD',
     description:
       'Charges mobile devices using solar energy, perfect for outdoor use.',
-    image: 'https://source.unsplash.com/random?water',
+    image: img_Solar_Powered_Portable_Charger,
     imageLabel: 'Image Text',
   },
   {
@@ -66,7 +75,7 @@ const featuredPosts = [
     price: '$40 AUD',
     description:
       'Designed to conserve water, it can save up to 50% of water compared to traditional showerheads.',
-    image: 'https://source.unsplash.com/random?recycle',
+    image: img_Water_Saving_Shower_Head,
     imageLabel: 'Image Text',
   },
   {
@@ -74,7 +83,7 @@ const featuredPosts = [
     price: '$8 AUD',
     description:
       'Consumes up to 80% less power than traditional incandescent bulbs and has a longer lifespan.',
-    image: 'https://source.unsplash.com/random?water',
+    image: img_LED_Energy_Saving_Bulb,
     imageLabel: 'Image Text',
   },
   {
@@ -82,7 +91,7 @@ const featuredPosts = [
     price: '$30 AUD',
     description:
       'Made from organic cotton grown without the use of chemical pesticides and synthetic fertilizers.',
-    image: 'https://source.unsplash.com/random?recycle',
+    image: img_Organic_Cotton_T_Shirt,
     imageLabel: 'Image Text',
   },
   {
@@ -90,7 +99,7 @@ const featuredPosts = [
     price: '$35 AUD',
     description:
       'Requires no electricity, grinding coffee beans through manual rotation.',
-    image: 'https://source.unsplash.com/random?water',
+    image: img_Manual_Coffee_Grinder,
     imageLabel: 'Image Text',
   },
 ]
