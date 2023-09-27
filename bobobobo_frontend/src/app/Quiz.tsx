@@ -1,5 +1,4 @@
 import { useCallback, useMemo, useState } from "react";
-import { QuestionType, useQuiz } from "../store/QuizContext";
 import { Question } from "../component/quiz/question";
 import { Button, Paper, useTheme } from "@mui/material";
 import Header from "../component/Header";
@@ -57,18 +56,18 @@ export function QuizScreen() {
     setCurrent(current - 1);
   };
   const theme = useTheme();
-  const [correctNum, setCorrectNum] = useState<number>(0);
-  const incorrectNum = useMemo(() => 5 - correctNum, [correctNum]);
 
-  const postQuizResult = useCallback(() => {
+  const postQuizResult = (correct:number, incorrectNum:number) => {
     axios.post(
-      "/api/quiz/check/",
+      "/api/quiz/check",
       {
-        "correct_num": correctNum,
+        "correct_num": correct,
         "incorrect_num": incorrectNum
       }
-    )
-  }, [correctNum, incorrectNum]);
+    ).catch(e => {
+      console.log(e.response)
+    })
+  }
 
   return (
     <>
@@ -121,7 +120,7 @@ export function QuizScreen() {
                 <Button style={{
                   width: 120,
                   alignSelf: "flex-end"
-                }} variant="outlined" onClick={prev}>
+                }} variant="outlined" onClick={prev} color="success">
                   Prev
                 </Button>
               )}
@@ -130,7 +129,7 @@ export function QuizScreen() {
                   width: 120,
                   alignSelf: "flex-end"
     
-                }} variant="contained" onClick={next}>
+                }} variant="contained" onClick={next} color="success">
                   Next
                 </Button>
               )}
@@ -142,6 +141,7 @@ export function QuizScreen() {
                   }} variant="contained" onClick={() => {
                     setFinished(true);
                     let tempScore = 0;
+                    let correctNum = 0;
                     Object.entries(quizAnswers).map(([questionId, answerId]) => {
                       const question = tempQuiz.find(
                         (question) => question.id === parseInt(questionId)
@@ -155,6 +155,9 @@ export function QuizScreen() {
                       if (!correctAnswerId) {
                         throw new Error("Correct answer not found");
                       }
+                      if (answerId === correctAnswerId) {
+                        correctNum += 1;
+                      }
                       return answerId === correctAnswerId ? BASE_SCORE : 0;
                     })
                     .forEach((score) => {
@@ -163,12 +166,9 @@ export function QuizScreen() {
                     setScore(
                       tempScore
                     );
-                    setCorrectNum(
-                      tempScore / BASE_SCORE
-                    );
-                    postQuizResult()
+                    postQuizResult(correctNum, 5 - correctNum);
                     setQuizAnswers({})
-                  }}>
+                  }} color="success">
                     Finish
                   </Button>
                 )

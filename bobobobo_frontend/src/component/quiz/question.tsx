@@ -22,7 +22,7 @@ export function Question({
       gap: 16,
     }}>
       <h1 style={{
-        color: theme.palette.text.primary,
+        color: theme.palette.success.main,
         marginBottom: 0
       }}>{question.question}</h1>
       <p style={{
