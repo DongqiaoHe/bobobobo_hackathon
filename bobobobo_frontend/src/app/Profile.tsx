@@ -54,7 +54,7 @@ export default function Profile() {
                 p: 2,
                 display: 'flex',
                 flexDirection: 'column',
-                height: 240,
+                height: 300,
               }}>
               <Chart />
             </Paper>
@@ -66,7 +66,7 @@ export default function Profile() {
                 p: 2,
                 display: 'flex',
                 flexDirection: 'column',
-                height: 240,
+                height: 300,
               }}>
               <BarChart />
             </Paper>

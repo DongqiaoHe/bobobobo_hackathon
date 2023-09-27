@@ -11,8 +11,8 @@ import {
 import Title from './Title'
 
 const data = [
-  { name: 'Yours', amount: 5000 },
-  { name: 'Average', amount: 4800 },
+  { name: 'Yours', amount: 48.5 },
+  { name: 'Average', amount: 47 },
 ]
 
 export default function BarChartComponent() {
@@ -46,7 +46,7 @@ export default function BarChartComponent() {
                 fill: theme.palette.text.primary,
                 ...theme.typography.body1,
               }}>
-              Carbon Emission(kg)
+              Carbon Footprint(kg) per day
             </Label>
           </YAxis>
           <Bar dataKey="amount" fill={theme.palette.primary.main} />
