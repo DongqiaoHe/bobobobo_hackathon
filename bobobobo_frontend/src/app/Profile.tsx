@@ -41,18 +41,20 @@ export default function Profile() {
   }
 
   return (
-      <>
-      <Header title='Earth Protector' left={
-          <Button>
-            Left
+    <>
+      <Header
+        title="Earth Protector"
+        left={
+          <Button href="/blog" variant="text">
+            Dashboard
           </Button>
         }
         right={
-          <Button>
-            Right
+          <Button href="/" variant="outlined">
+            Log Out
           </Button>
         }
-        />
+      />
       <Box sx={{ display: 'flex' }}>
         <Box
           component="main"
@@ -103,6 +105,6 @@ export default function Profile() {
           </Container>
         </Box>
       </Box>
-      </>
+    </>
   )
 }
