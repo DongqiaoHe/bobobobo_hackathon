@@ -29,6 +29,25 @@ axios.interceptors.response.use(
     },
 );
 
-export const signup = (username:string, Password:string) => axios.post(`/user/register`, {username, Password});
+export const getMoment = (token: string) => axios({
+    method: 'get',
+    url: '/moment',
+    headers: {
+        Authorization: `Bearer ${token}`,
+    }
+});
 
-export const login = (username:string, Password:string) => axios.post(`/user/login`, {username, Password});
+export const postMoment = (topic: string, content: string, table:object, amount: string, token: string) => axios({
+    method: 'post',
+    url: '/moment',
+    data: {
+        topic,
+        content,
+        table : {
+            amount,
+        },
+    },
+    headers: {
+        Authorization: `Bearer ${token}`,
+    }
+});

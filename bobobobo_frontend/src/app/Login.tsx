@@ -9,6 +9,10 @@ import Paper from '@mui/material/Paper'
 import Box from '@mui/material/Box'
 import Grid from '@mui/material/Grid'
 import Typography from '@mui/material/Typography'
+import {login} from "../utils/userApi";
+import {StatusCodes} from "http-status-codes";
+import { useNavigate } from 'react-router-dom'
+import {useState} from "react";
 
 function Copyright(props: any) {
   return (
@@ -28,14 +32,51 @@ function Copyright(props: any) {
 }
 
 export default function Login() {
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault()
-    const data = new FormData(event.currentTarget)
-    console.log({
-      email: data.get('email'),
-      password: data.get('password'),
-    })
-  }
+  const navigate = useNavigate();
+    const [warning, setWarning] = useState({
+        shown: false,
+        message: '',
+    });
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+    try {
+      event.preventDefault()
+      const data = new FormData(event.currentTarget);
+      const username = data.get('username');
+      const Password = data.get('Password');
+      const loginResponse = await login(
+username !== null ? username.toString() : '',
+Password !== null ? Password.toString() : '',
+      );
+      if (loginResponse.status === StatusCodes.OK) {
+        const token = loginResponse.data.token;
+        localStorage.setItem('token', token);
+        navigate('/profile');
+      }
+    } catch (error: any) {
+      if (error.response) {
+        if (error.response.status >= StatusCodes.INTERNAL_SERVER_ERROR) {
+          setWarning({
+            ...warning,
+            shown: true,
+            message: '',
+          });
+      }
+      if (error.response.status === StatusCodes.UNAUTHORIZED) {
+        setWarning({
+          ...warning,
+          shown: true,
+          message: '',
+        });
+        }
+      } else {
+        setWarning({
+          ...warning,
+          shown: true,
+          message: 'Oops! Something went wrong.',
+        });
+      }
+    }
+}
 
   return (
   <Grid container component="main" sx={{ height: '100vh' }}>

@@ -38,7 +38,7 @@ const featuredPosts = [
 
 // const posts = [post1. post2];
 
-// TODO remove, this demo shouldn't need to reset the theme.
+
 const defaultTheme = createTheme();
 
 export default function Blog() {
