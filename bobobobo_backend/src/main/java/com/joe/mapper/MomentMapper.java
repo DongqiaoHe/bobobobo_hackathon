@@ -20,4 +20,6 @@ public interface MomentMapper {
     @Update("UPDATE moment SET star_num = star_num + 1 where id = #{id}")
     void addStar(Moment starRequest);
 
+    @Select("select * from moment")
+    List<Moment> getAllMoments();
 }

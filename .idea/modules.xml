@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/bobobobo_backend/bobobobo.iml" filepath="$PROJECT_DIR$/bobobobo_backend/bobobobo.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/bobobobo_hackathon.iml" filepath="$PROJECT_DIR$/.idea/bobobobo_hackathon.iml" />
     </modules>
   </component>

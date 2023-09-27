@@ -43,7 +43,7 @@ public class MomentController {
     public ResponseEntity<?> getMoment(@RequestHeader("Authorization") String token) {
         String username = JwtUtil.getUserUserFromToken(token);
         int userId = userService.getIdByUsername(username);
-        List<Moment> data = momentService.getMoment(userId);
+        List<Moment> data = momentService.getAllMoment(userId);
         return new ResponseEntity<>(data, HttpStatus.ACCEPTED); // 或者返回其他响应
     }
 
@@ -78,4 +78,9 @@ public class MomentController {
         return new ResponseEntity<>(data,HttpStatus.CREATED); // 或者返回其他响应
     }
 
+    @GetMapping("/all")
+    public ResponseEntity<?> getAllMoment() {
+        List<Moment> data = momentService.getAllMoments();
+        return new ResponseEntity<>(data, HttpStatus.ACCEPTED); // 或者返回其他响应
+    }
 }

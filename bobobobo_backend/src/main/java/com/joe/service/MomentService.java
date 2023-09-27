@@ -18,12 +18,16 @@ public class MomentService {
         momentMapper.postMoment(moment);
     }
 
-    public List<Moment> getMoment(int id){
+    public List<Moment> getAllMoment(int id){
         System.out.println("service: "+id);
         return momentMapper.getMoments(id);
     }
 
     public void addStar(Moment starRequest) {
         momentMapper.addStar(starRequest);
+    }
+
+    public List<Moment> getAllMoments() {
+        return momentMapper.getAllMoments();
     }
 }
