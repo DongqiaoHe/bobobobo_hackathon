@@ -56,7 +56,7 @@ export default function Chart() {
                 fill: theme.palette.text.primary,
                 ...theme.typography.body1,
               }}>
-              Sales ($)
+              Carbon Emission(kg)
             </Label>
           </YAxis>
           <Line

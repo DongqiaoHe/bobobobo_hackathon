@@ -46,7 +46,7 @@ export default function BarChartComponent() {
                 fill: theme.palette.text.primary,
                 ...theme.typography.body1,
               }}>
-              Sales ($)
+              Carbon Emission(kg)
             </Label>
           </YAxis>
           <Bar dataKey="amount" fill={theme.palette.primary.main} />
