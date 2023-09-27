@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { QuestionType, useQuiz } from "../store/QuizContext";
 
 const tempQuiz:QuestionType[] = [
@@ -55,10 +56,23 @@ const tempQuiz:QuestionType[] = [
 ]
 
 export function QuizScreen() {
-  const { quiz, current, getQuiz } = useQuiz();
-  return (
-    <div>
-      <h1>Quiz</h1>
-    </div>
-  )
+  const [quiz, setQuiz] = useState<QuestionType[]>(tempQuiz);
+  const [current, setCurrent] = useState<number>(0);
+  const [score, setScore] = useState<number>(0);
+  const [finished, setFinished] = useState<boolean>(false);
+
+  if (finished) {
+    return (
+      <div>
+        <h1>Finished!</h1>
+        <p>Your score is {score}</p>
+      </div>
+    )
+  } else {
+    return (
+      <div>
+        <h1>Quiz</h1>
+      </div>
+    )
+  }
 }
