@@ -1,0 +1,262 @@
+[
+    {
+        "id": 1,
+        "question": "What is a carbon footprint?",
+        "answers": [
+            {
+                "id": 1,
+                "answer": "The actual shape of carbon",
+                "correct": false
+            },
+            {
+                "id": 2,
+                "answer": "The actual weight of carbon",
+                "correct": false
+            },
+            {
+                "id": 3,
+                "answer": "The amount of carbon emitted in producing a product",
+                "correct": false
+            },
+            {
+                "id": 4,
+                "answer": "The carbon emissions caused by the activities of an individual or organization",
+                "correct": true
+            }
+        ]
+    },
+    {
+        "id": 2,
+        "question": "Which of the following is not a greenhouse gas?",
+        "answers": [
+            {
+                "id": 1,
+                "answer": "Oxygen",
+                "correct": true
+            },
+            {
+                "id": 2,
+                "answer": "Carbon dioxide",
+                "correct": false
+            },
+            {
+                "id": 3,
+                "answer": "Methane",
+                "correct": false
+            },
+            {
+                "id": 4,
+                "answer": "Nitrous oxide",
+                "correct": false
+            }
+        ]
+    },
+    {
+        "id": 3,
+        "question": "Which activity has been the primary source of carbon emissions since the industrial revolution?",
+        "answers": [
+            {
+                "id": 1,
+                "answer": "Agriculture",
+                "correct": false
+            },
+            {
+                "id": 2,
+                "answer": "Shipbuilding",
+                "correct": false
+            },
+            {
+                "id": 3,
+                "answer": "Burning of fossil fuels",
+                "correct": true
+            },
+            {
+                "id": 4,
+                "answer": "Handicraft manufacturing",
+                "correct": false
+            }
+        ]
+    },
+    {
+        "id": 4,
+        "question": "Which country is the world's largest carbon emitter?",
+        "answers": [
+            {
+                "id": 1,
+                "answer": "Australia",
+                "correct": false
+            },
+            {
+                "id": 2,
+                "answer": "Germany",
+                "correct": false
+            },
+            {
+                "id": 3,
+                "answer": "China",
+                "correct": true
+            },
+            {
+                "id": 4,
+                "answer": "Brazil",
+                "correct": false
+            }
+        ]
+    },
+    {
+        "id": 5,
+        "question": "Which energy source should be prioritized to reduce carbon footprint?",
+        "answers": [
+            {
+                "id": 1,
+                "answer": "Coal",
+                "correct": false
+            },
+            {
+                "id": 2,
+                "answer": "Natural gas",
+                "correct": false
+            },
+            {
+                "id": 3,
+                "answer": "Nuclear",
+                "correct": false
+            },
+            {
+                "id": 4,
+                "answer": "Solar",
+                "correct": true
+            }
+        ]
+    },
+    {
+        "id": 6,
+        "question": "Which of the following is not a carbon sink?",
+        "answers": [
+            {
+                "id": 1,
+                "answer": "Forests",
+                "correct": false
+            },
+            {
+                "id": 2,
+                "answer": "Oceans",
+                "correct": false
+            },
+            {
+                "id": 3,
+                "answer": "Deserts",
+                "correct": true
+            },
+            {
+                "id": 4,
+                "answer": "Wetlands",
+                "correct": false
+            }
+        ]
+    },
+    {
+        "id": 7,
+        "question": "Which mode of transport has the lowest carbon emissions?",
+        "answers": [
+            {
+                "id": 1,
+                "answer": "Airplane",
+                "correct": false
+            },
+            {
+                "id": 2,
+                "answer": "Car",
+                "correct": false
+            },
+            {
+                "id": 3,
+                "answer": "Bicycle",
+                "correct": true
+            },
+            {
+                "id": 4,
+                "answer": "Motorcycle",
+                "correct": false
+            }
+        ]
+    },
+    {
+        "id": 8,
+        "question": "What does carbon neutrality mean?",
+        "answers": [
+            {
+                "id": 1,
+                "answer": "Increasing carbon emissions",
+                "correct": false
+            },
+            {
+                "id": 2,
+                "answer": "Removing carbon from the atmosphere",
+                "correct": false
+            },
+            {
+                "id": 3,
+                "answer": "Balancing the amount of emitted and absorbed carbon",
+                "correct": true
+            },
+            {
+                "id": 4,
+                "answer": "Studying the physical properties of carbon",
+                "correct": false
+            }
+        ]
+    },
+    {
+        "id": 9,
+        "question": "Which material has the highest carbon emissions in its production process?",
+        "answers": [
+            {
+                "id": 1,
+                "answer": "Wood",
+                "correct": false
+            },
+            {
+                "id": 2,
+                "answer": "Plastic",
+                "correct": false
+            },
+            {
+                "id": 3,
+                "answer": "Glass",
+                "correct": false
+            },
+            {
+                "id": 4,
+                "answer": "Aluminum",
+                "correct": true
+            }
+        ]
+    },
+    {
+        "id": 10,
+        "question": "Which international agreement was reached in 2015 to address global warming?",
+        "answers": [
+            {
+                "id": 1,
+                "answer": "Kyoto Protocol",
+                "correct": false
+            },
+            {
+                "id": 2,
+                "answer": "Paris Agreement",
+                "correct": true
+            },
+            {
+                "id": 3,
+                "answer": "Montreal Protocol",
+                "correct": false
+            },
+            {
+                "id": 4,
+                "answer": "Oslo Agreement",
+                "correct": false
+            }
+        ]
+    }
+]

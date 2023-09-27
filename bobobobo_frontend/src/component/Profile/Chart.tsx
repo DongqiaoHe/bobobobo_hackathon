@@ -16,13 +16,13 @@ function createData(time: string, amount?: number) {
 }
 
 const data = [
-  createData('27 Sep', 0),
-  createData('26 Sep', 300),
-  createData('25 Sep', 600),
-  createData('24 Sep', 800),
-  createData('23 Sep', 1500),
-  createData('22 Sep', 2000),
-  createData('21 Sep', 2400),
+  createData('27 Sep', 47),
+  createData('26 Sep', 45),
+  createData('25 Sep', 48),
+  createData('24 Sep', 55),
+  createData('23 Sep', 40),
+  createData('22 Sep', 45),
+  createData('21 Sep', 60),
 ]
 
 export default function Chart() {
@@ -56,7 +56,7 @@ export default function Chart() {
                 fill: theme.palette.text.primary,
                 ...theme.typography.body1,
               }}>
-              Sales ($)
+              Carbon Footprint(kg)
             </Label>
           </YAxis>
           <Line

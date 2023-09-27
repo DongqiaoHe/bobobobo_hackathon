@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const baseUrl = 'http://124.222.146.116:8881';
+const baseUrl = 'http://localhost:8881/api';
 
 axios.defaults.baseURL = baseUrl;
 
@@ -29,6 +29,6 @@ axios.interceptors.response.use(
     },
 );
 
-export const signup = (username:string, Password:string) => axios.post(`/user/register`, {username, Password});
+export const signup = (username:string, password:string) => axios.post(`/user/register`, {username, password});
 
-export const login = (username:string, Password:string) => axios.post(`/user/login`, {username, Password});
+export const login = (username:string, password:string) => axios.post(`/user/login`, {username, password});
