@@ -163,6 +163,10 @@ export function QuizScreen() {
                     setScore(
                       tempScore
                     );
+                    setCorrectNum(
+                      tempScore / BASE_SCORE
+                    );
+                    postQuizResult()
                     setQuizAnswers({})
                   }}>
                     Finish
