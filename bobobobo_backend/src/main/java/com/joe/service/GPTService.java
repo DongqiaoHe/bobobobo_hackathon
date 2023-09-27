@@ -1,6 +1,6 @@
-package com.chatgpt.service;
+package com.joe.service;
 
-import com.chatgpt.ChatGPTExample;
+import com.joe.chatgpt.ChatGPTExample;
 
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;

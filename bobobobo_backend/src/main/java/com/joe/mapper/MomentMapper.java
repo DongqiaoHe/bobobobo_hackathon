@@ -1,6 +1,6 @@
-package com.joe.login.mapper;
+package com.joe.mapper;
 
-import com.joe.login.bean.Moment;
+import com.joe.bean.Moment;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;

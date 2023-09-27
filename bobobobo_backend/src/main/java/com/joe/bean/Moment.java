@@ -1,4 +1,4 @@
-package com.joe.login.bean;
+package com.joe.bean;
 
 import lombok.Data;
 

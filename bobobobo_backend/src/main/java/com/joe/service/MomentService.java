@@ -1,7 +1,7 @@
-package com.joe.login.service;
+package com.joe.service;
 
-import com.joe.login.bean.Moment;
-import com.joe.login.mapper.MomentMapper;
+import com.joe.bean.Moment;
+import com.joe.mapper.MomentMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

@@ -1,6 +1,6 @@
-package com.chatgpt.controller;
+package com.joe.controller;
 
-import com.chatgpt.service.GPTService;
+import com.joe.service.GPTService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
