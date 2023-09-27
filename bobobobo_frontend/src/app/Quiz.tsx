@@ -66,7 +66,7 @@ export function QuizScreen() {
 
   const postQuizResult = (correct:number, incorrectNum:number) => {
     axios.patch(
-      "/quiz",
+      "/user/quiz",
       {
         "quiz_correct": correct,
         "quiz_wrong": incorrectNum
