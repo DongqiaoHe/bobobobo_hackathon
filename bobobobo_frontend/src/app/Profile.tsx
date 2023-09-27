@@ -31,7 +31,7 @@ export default function Profile() {
       <Header
         title="Profile"
         left={
-          <Button href="/landing" variant="text">
+          <Button href="/landing" variant="contained">
             Dashboard
           </Button>
         }
