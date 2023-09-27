@@ -13,10 +13,13 @@ const ChatBox: React.FC = () => {
   const sendMessage = async () => { // 注意 async 关键字
     try {
       const response = await askgpt(input); // 使用 input 而不是 message
+      console.log("bobobooboboboobobobo")
+      console.log("Response:"+response);
       // Process the response as needed
-      console.log(response.data);
+      
+      console.log("Data:"+response.data);
       // 添加新的消息到 messages 列表
-      setMessages(prevMessages => [...prevMessages, { content: input, id: Date.now() }]);
+      setMessages(prevMessages => [...prevMessages, { content: response.data.response, id: Date.now() }]);
       setInput(''); // 清空输入框
     } catch (error) {
       console.error("Error sending message:", error);
