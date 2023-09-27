@@ -481,18 +481,18 @@ const CarbonCalculator = () => {
                                                     RESET
                                                 </Button>
                                             </div>
+
+                                            <br/>
+                                            <Button
+                                                variant="contained"
+                                                endIcon={<ShareIcon />}
+                                                sx={{ backgroundColor: '#FCB44F', color: '#252525' }}
+                                                onClick={handleShareOnClick}
+                                            >
+                                                Share To Community
+                                            </Button>
                                         </>)
                                     }
-
-                                    <br/>
-                                    <Button
-                                        variant="contained"
-                                        endIcon={<ShareIcon />}
-                                        sx={{ backgroundColor: '#FCB44F', color: '#252525' }}
-                                        onClick={handleShareOnClick}
-                                    >
-                                        Share To Community
-                                    </Button>
 
                                     {!(totalCarbonByBill > 0) && (
                                         <>
@@ -517,6 +517,7 @@ const CarbonCalculator = () => {
                                                 <Tooltip formatter={tooltipFormatter}/>
                                                 <Bar dataKey="carbon" fill="#6a8d6d" background={{ fill: '#eee' }} />
                                             </BarChart>
+
                                             <br/>
                                             <div>
                                                 <Button
@@ -526,6 +527,16 @@ const CarbonCalculator = () => {
                                                     onClick={handleResetOnClick}
                                                 >
                                                     RESET
+                                                </Button>
+
+                                                <br/><br/>
+                                                <Button
+                                                    variant="contained"
+                                                    endIcon={<ShareIcon />}
+                                                    sx={{ backgroundColor: '#FCB44F', color: '#252525' }}
+                                                    onClick={handleShareOnClick}
+                                                >
+                                                    Share To Community
                                                 </Button>
                                             </div>
                                         </>
@@ -571,24 +582,26 @@ const CarbonCalculator = () => {
                 right={
                     <Avatar alt="Profile" src="/static/images/avatar/1.jpg" onClick={onClickAvatar} />}
             />
-            {!showEstimation && (
-                <div style={{ display: 'flex', width: '90%', height: '100%' }}>
-                    <div style={{ flex: 1, padding: '10px' }}>
-                        <div style={{ width: '100%', height: '100%', border: 'none', padding: '10px', resize: 'none' }}>
-                            {headerText()}
-                            <DividerWithText text="●・○・●・○・●" />
-                            <br/>
-                            {appBar()}
-                            <Container maxWidth="md" style={{ marginTop: "20px" }}>
-                                {showActivityDropdown && activityDropDownMenu()}
-                                {showUtilityFields && userInputTrackUtilityBill()}
-                            </Container>
+            <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh'}}>
+                {!showEstimation && (
+                    <div style={{ display: 'flex', width: '800%', height: '100%' }}>
+                        <div style={{ flex: 1, padding: '10px' }}>
+                            <div style={{ width: '100%', height: '100%', border: 'none', padding: '10px', resize: 'none' }}>
+                                {headerText()}
+                                <DividerWithText text="●・○・●・○・●" />
+                                <br/>
+                                {appBar()}
+                                <Container maxWidth="md" style={{ marginTop: "20px" }}>
+                                    {showActivityDropdown && activityDropDownMenu()}
+                                    {showUtilityFields && userInputTrackUtilityBill()}
+                                </Container>
+                            </div>
                         </div>
+                        {rightPanelImg()}
                     </div>
-                    {rightPanelImg()}
-                </div>
-            )}
-            {showEstimation && resultPage()}
+                )}
+                {showEstimation && resultPage()}
+            </div>
         </div>
     );
 };
