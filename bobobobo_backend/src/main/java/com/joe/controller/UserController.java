@@ -1,16 +1,14 @@
-package com.joe.login.controller;
+package com.joe.controller;
 
-import com.joe.login.bean.User;
-import com.joe.login.service.JwtUtil;
-import com.joe.login.service.UserService;
-import io.jsonwebtoken.Jwts;
-import io.jsonwebtoken.SignatureAlgorithm;
+import com.joe.bean.Quiz;
+import com.joe.bean.User;
+import com.joe.service.JwtUtil;
+import com.joe.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -46,7 +44,22 @@ public class UserController {
             responseMap.put("message", "The username is exist!");
             return new ResponseEntity<>(responseMap, HttpStatus.BAD_REQUEST);
         }
-
     }
 
+    @RequestMapping(value = "/quiz" , method = RequestMethod.PATCH)
+    public ResponseEntity<?> submitQuiz(@RequestHeader("Authorization") String token, @RequestBody Quiz result){
+        try {
+            int id = userService.getIdByUsername(JwtUtil.getUserUserFromToken(token));
+            result.setId(id);
+            userService.submitQuiz(result);
+            return new ResponseEntity<>(HttpStatus.CREATED);
+        } catch (Exception e) {
+            System.out.println("错了");
+            e.printStackTrace();
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+    }
+
+
+//eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0IiwiaWF0IjoxNjk1Nzc1MjYzLCJleHAiOjE2OTYwMzQ0NjN9.pm-buXi8elAfbiDOY8iWrYtvOSueAfZ8PLXZQSoipk0
 }

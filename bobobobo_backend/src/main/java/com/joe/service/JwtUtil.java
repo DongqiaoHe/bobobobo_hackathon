@@ -1,4 +1,4 @@
-package com.joe.login.service;
+package com.joe.service;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;

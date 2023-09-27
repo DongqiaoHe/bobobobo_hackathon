@@ -1,7 +1,7 @@
-package com.joe.login.service;
+package com.joe.service;
 
-import com.joe.login.bean.Comment;
-import com.joe.login.mapper.CommentMapper;
+import com.joe.bean.Comment;
+import com.joe.mapper.CommentMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

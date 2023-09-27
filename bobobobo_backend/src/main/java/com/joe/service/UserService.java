@@ -1,7 +1,8 @@
-package com.joe.login.service;
+package com.joe.service;
 
-import com.joe.login.bean.User;
-import com.joe.login.mapper.UserMapper;
+import com.joe.bean.Quiz;
+import com.joe.bean.User;
+import com.joe.mapper.UserMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.DigestUtils;
@@ -39,6 +40,8 @@ public class UserService {
         return userMapper.findByIdByUsername(username);
     }
 
-
-
+    public void submitQuiz(Quiz quiz) {
+        userMapper.submitQuiz(quiz);
+        System.out.println("quiz submit in service");
+    }
 }
