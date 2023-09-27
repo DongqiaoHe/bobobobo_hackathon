@@ -1,6 +1,7 @@
 import * as React from 'react'
 import Title from './Title'
 import { Box, TextField, Button } from '@mui/material'
+import { isVisible } from '@testing-library/user-event/dist/utils'
 
 export default function Orders() {
   const [isEditable, setIsEditable] = React.useState(false)
@@ -33,16 +34,8 @@ export default function Orders() {
           <div>
             <TextField
               id="outlined-read-only-input-fname"
-              label="First Name"
-              defaultValue="Your First name"
-              InputProps={{
-                readOnly: !isEditable,
-              }}
-            />
-            <TextField
-              id="outlined-read-only-input-lname"
-              label="Last Name"
-              defaultValue="Your Last name"
+              label="User Name"
+              defaultValue="usename"
               InputProps={{
                 readOnly: !isEditable,
               }}
@@ -55,6 +48,13 @@ export default function Orders() {
                 readOnly: !isEditable,
               }}
             />
+            <TextField
+              id="outlined-read-only-input-lname"
+              label="password"
+              defaultValue="password"
+              type={"password"}
+            />
+
           </div>
           <Button variant="contained" onClick={handleButtonClick}>
             {buttonLabel}
