@@ -31,7 +31,8 @@ public class MomentController {
 
 
     @PostMapping
-    public ResponseEntity<?> createMoment(@RequestHeader("Authorization") String token, @RequestBody Moment moment) {
+    public ResponseEntity<?> createMoment(@RequestHeader("Authorization") String header, @RequestBody Moment moment) {
+        String token = header.replace("Bearer ", "");
         String username = JwtUtil.getUserUserFromToken(token);
         moment.setUser_id(userService.getIdByUsername(username));
         momentService.postMoment(moment);
@@ -40,7 +41,9 @@ public class MomentController {
 
 
     @GetMapping
-    public ResponseEntity<?> getMoment(@RequestHeader("Authorization") String token) {
+    public ResponseEntity<?> getMoment(@RequestHeader("Authorization") String header) {
+        String token = header.replace("Bearer ", "");
+
         String username = JwtUtil.getUserUserFromToken(token);
         int userId = userService.getIdByUsername(username);
         List<Moment> data = momentService.getAllMoment(userId);
@@ -48,7 +51,9 @@ public class MomentController {
     }
 
     @PatchMapping("/star")
-    public ResponseEntity<?> addStar(@RequestHeader("Authorization") String token, @RequestBody Moment starRequest) {
+    public ResponseEntity<?> addStar(@RequestHeader("Authorization") String header, @RequestBody Moment starRequest) {
+        String token = header.replace("Bearer ", "");
+
         String username = JwtUtil.getUserUserFromToken(token);
         System.out.println(starRequest);
         if(username!=null){
@@ -61,7 +66,9 @@ public class MomentController {
     }
 
     @PostMapping("/comment")
-    public ResponseEntity<?> postComment(@RequestHeader("Authorization") String token, @RequestBody Comment comment) {
+    public ResponseEntity<?> postComment(@RequestHeader("Authorization") String header, @RequestBody Comment comment) {
+        String token = header.replace("Bearer ", "");
+
         String username = JwtUtil.getUserUserFromToken(token);
         int id = userService.getIdByUsername(username);
         comment.setUser_id(id);
@@ -70,7 +77,9 @@ public class MomentController {
     }
 
     @GetMapping("/comment")
-    public ResponseEntity<?> getComment(@RequestHeader("Authorization") String token, @RequestBody Map<String, Object> payload) {
+    public ResponseEntity<?> getComment(@RequestHeader("Authorization") String header, @RequestBody Map<String, Object> payload) {
+        String token = header.replace("Bearer ", "");
+
         String username = JwtUtil.getUserUserFromToken(token);
         int id = userService.getIdByUsername(username);
         List<Comment> data =  commentService.getComment((Integer) payload.get("moment_id"));

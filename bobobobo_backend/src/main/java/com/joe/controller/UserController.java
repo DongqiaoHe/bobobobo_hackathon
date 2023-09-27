@@ -47,8 +47,10 @@ public class UserController {
     }
 
     @RequestMapping(value = "/quiz" , method = RequestMethod.PATCH)
-    public ResponseEntity<?> submitQuiz(@RequestHeader("Authorization") String token, @RequestBody Quiz result){
+    public ResponseEntity<?> submitQuiz(@RequestHeader("Authorization") String header, @RequestBody Quiz result){
+        System.out.println(header);
         try {
+            String token = header.replace("Bearer ", "");
             int id = userService.getIdByUsername(JwtUtil.getUserUserFromToken(token));
             result.setId(id);
             userService.submitQuiz(result);
