@@ -1,78 +1,162 @@
-import { useState } from "react";
+import { useCallback, useMemo, useState } from "react";
 import { QuestionType, useQuiz } from "../store/QuizContext";
+import { Question } from "../component/quiz/question";
+import { Button, Paper, useTheme } from "@mui/material";
+import Header from "../component/Header";
+import { PageContainer } from "../component/PageContainer";
+import questions from "../data/questions.json"
+import axios from "axios";
 
-const tempQuiz:QuestionType[] = [
-  {
-    id: 1,
-    question: "What is the capital of Indonesia?",
-    answers: [
-      {
-        id: 1,
-        answer: "Jakarta",
-        correct: true,
-      },
-      {
-        id: 2,
-        answer: "Bandung",
-        correct: false,
-      },
-      {
-        id: 3,
-        answer: "Bali",
-        correct: false,
-      },
-      {
-        id: 4,
-        answer: "Surabaya",
-        correct: false,
-      },
-    ]
-  }, {
-    id: 2,
-    question: "What is the capital of Malaysia?",
-    answers: [
-      {
-        id: 1,
-        answer: "Jakarta",
-        correct: false,
-      },
-      {
-        id: 2,
-        answer: "Bandung",
-        correct: false,
-      },
-      {
-        id: 3,
-        answer: "Bali",
-        correct: false,
-      },
-      {
-        id: 4,
-        answer: "Kuala Lumpur",
-        correct: true,
-      },
-    ]
+const shuffleArray = (array:any[]) => {
+  let tempArray = [...array]; // Create a copy so we don't modify the original
+  for (let i = tempArray.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [tempArray[i], tempArray[j]] = [tempArray[j], tempArray[i]]; // Swap elements
   }
-]
+  return tempArray;
+};
+
+const getRandomFiveElements = (array:any[]) => {
+  if (array.length < 5) {
+    throw new Error("Array must have at least 5 elements");
+  }
+  
+  const shuffled = shuffleArray(array);
+  return shuffled.slice(0, 5);
+};
+
+let tempQuiz = getRandomFiveElements(questions);
+
+const BASE_SCORE = 10;
+
+const getScoreMessage = (score: number) => {
+  if (score <= Math.floor(BASE_SCORE * 5 * 0.6)) {
+    return "You Can Do Better Next Time!"
+  } else if (score !== BASE_SCORE * 5) {
+    return "Congratulations!"
+  } else {
+    return "Incredibly Well Done!"
+  }
+}
+
+export type QuizAnswersType = {
+  [questionId: number]: number;
+};
 
 export function QuizScreen() {
-  const [quiz, setQuiz] = useState<QuestionType[]>(tempQuiz);
+  const [quizAnswers, setQuizAnswers] = useState<QuizAnswersType>({});
   const [current, setCurrent] = useState<number>(0);
   const [score, setScore] = useState<number>(0);
   const [finished, setFinished] = useState<boolean>(false);
+  const hasNext = useMemo(() => current < tempQuiz.length - 1, [current]);
+  const hasPrev = useMemo(() => current > 0, [current]);
+  const next = () => {
+    setCurrent(current + 1);
+  };
+  const prev = () => {
+    setCurrent(current - 1);
+  };
+  const theme = useTheme();
+  const [correctNum, setCorrectNum] = useState<number>(0);
+  const incorrectNum = useMemo(() => 5 - correctNum, [correctNum]);
 
-  if (finished) {
-    return (
-      <div>
-        <h1>Finished!</h1>
-        <p>Your score is {score}</p>
-      </div>
+  const postQuizResult = useCallback(() => {
+    axios.post(
+      "/api/quiz/check/",
+      {
+        "correct_num": correctNum,
+        "incorrect_num": incorrectNum
+      }
     )
-  } else {
-    return (
-      <div>
-        <h1>Quiz</h1>
-      </div>
-    )
-  }
+  }, [correctNum, incorrectNum]);
+
+  return (
+    <>
+      <Header title="Quiz" />
+      <PageContainer>
+        <Paper
+          sx={{
+            p: 2,
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+          }}
+        >
+          {
+            finished?(
+              <>
+                <h1 style={{
+                  color: theme.palette.success.main
+                }}>{getScoreMessage(score)}</h1>
+                <h3>Your Score is {score} Points!</h3>
+                <Button variant="contained" onClick={() => {
+                  setCurrent(0);
+                  setFinished(false);
+                  tempQuiz = getRandomFiveElements(questions);
+                }}>
+                  Redo
+                </Button>
+              </>
+            ):(
+              <>
+                {tempQuiz && (
+                <Question
+                  key={tempQuiz[current].id}
+                  question={tempQuiz[current]}
+                  onAnswer={(answer:any) => {
+                    setQuizAnswers({
+                      ...quizAnswers,
+                      [tempQuiz[current].id]: answer,
+                    });
+                  }}
+                />
+              )}
+              <div style={{
+                display: "flex",
+                flexDirection: "row",
+                gap: 8,
+                marginTop: 16,
+              }}>
+                {hasPrev && (
+                <Button style={{
+                  width: 120,
+                  alignSelf: "flex-end"
+                }} variant="outlined" onClick={prev}>
+                  Prev
+                </Button>
+              )}
+              {hasNext && (
+                <Button style={{
+                  width: 120,
+                  alignSelf: "flex-end"
+    
+                }} variant="contained" onClick={next}>
+                  Next
+                </Button>
+              )}
+              {
+                !hasNext && (
+                  <Button style={{
+                    width: 120,
+                    alignSelf: "flex-end"
+                  }} variant="contained" onClick={() => {
+                    setFinished(true);
+                    setScore(
+                      Object.values(quizAnswers).filter(
+                        (answer) => tempQuiz.find((question) => question.id === answer)?.answers.find((answer:any) => answer.correct)?.id === answer
+                      ).length * 5
+                    );
+                  }}>
+                    Finish
+                  </Button>
+                )
+              }
+              </div>
+              </>
+            )
+          }
+        </Paper>
+      </PageContainer>
+    </>
+  );
 }

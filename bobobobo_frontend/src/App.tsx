@@ -10,6 +10,7 @@ import { QuizProvider } from "./store/QuizContext";
 import { QuizScreen } from "./app/Quiz";
 import { ThemeProvider } from "@emotion/react";
 import { CssBaseline, createTheme } from "@mui/material";
+import { RankingPage } from "./app/Ranking";
 
 function App() {
   const theme = createTheme();
@@ -25,6 +26,7 @@ function App() {
               <Route path="/blog" element={<Blog />} />
               <Route path="/profile" element={<Profile />} />
               <Route path="/quiz" element={<QuizScreen />} />
+              <Route path="/ranking" element={<RankingPage />} />
               <Route path="*">"404 Not Found"</Route>
             </Routes>
           </BrowserRouter>
