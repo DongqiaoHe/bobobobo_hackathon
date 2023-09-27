@@ -32,18 +32,19 @@ const ChatBox: React.FC = () => {
 
   return (
     <div className="chat-box">
-      <div className="messages">
+      <div className="messages" style={{maxHeight: '480px', overflowY: 'auto'}}>
         {messages.map((message) => (
           <p key={message.id}>{message.content}</p>
         ))}
       </div>
       <div className="input-section">
-      <Button onClick={sendMessage}>Ask protector</Button>
+        
         <TextField 
           value={input} 
           onChange={e => setInput(e.target.value)} 
-          placeholder="Please input some verbs..."
+          placeholder="Ask here"
         />
+        <Button onClick={sendMessage}>Confirm</Button>
       </div>
     </div>
     

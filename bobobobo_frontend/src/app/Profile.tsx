@@ -43,7 +43,7 @@ export default function Profile() {
       />
       <PageContainer>
         <Grid container spacing={3}>
-          <Grid container spacing={3}>
+          
             {/* My Info */}
             <Grid item xs={9}>
               <Paper sx={{ p: 2, display: 'flex', flexDirection: 'column' }}>
@@ -68,7 +68,7 @@ export default function Profile() {
                 p: 2,
                 display: 'flex',
                 flexDirection: 'column',
-                height: 300,
+                height: 600,
               }}>
               <Chart />
             </Paper>
@@ -80,7 +80,7 @@ export default function Profile() {
                 p: 2,
                 display: 'flex',
                 flexDirection: 'column',
-                height: 300,
+                height: 600,
               }}>
               <BarChart />
             </Paper>
@@ -91,12 +91,12 @@ export default function Profile() {
                 p: 2,
                 display: 'flex',
                 flexDirection: 'column',
-                height: 300,
+                height: 600,
               }}>
               <ChatBox />
             </Paper>
           </Grid>
-        </Grid>
+        
       </Grid>
       </PageContainer>
     </>
