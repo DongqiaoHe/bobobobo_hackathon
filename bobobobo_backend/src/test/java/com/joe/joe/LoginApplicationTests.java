@@ -1,4 +1,4 @@
-package com.joe.login;
+package com.joe.joe;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

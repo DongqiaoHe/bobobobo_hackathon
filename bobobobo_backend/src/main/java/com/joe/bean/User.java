@@ -1,4 +1,4 @@
-package com.joe.login.bean;
+package com.joe.bean;
 
 import lombok.Data;
 
@@ -7,5 +7,6 @@ public class User {
     private Integer id;
     private String username;
     private String password;  // hashcode
-    private String token;
+    private Integer quiz_correct;
+    private Integer quiz_wrong;
 }
