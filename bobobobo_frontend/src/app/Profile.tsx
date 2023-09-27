@@ -14,6 +14,7 @@ import ChatBox from '../component/Profile/ChatBox'
 import Header from '../component/Header'
 import { Button } from '@mui/material'
 import { PageContainer } from '../component/PageContainer'
+import eco from '../image/eco.png'
 
 interface AppBarProps extends MuiAppBarProps {
   open?: boolean
@@ -50,10 +51,14 @@ export default function Profile() {
               </Paper>
             </Grid>
           <Grid item xs={3}>
-            <Paper sx={{ p: 2, flexDirection: 'column' }}>
+            <Paper sx={{ p: 2, height: 250 }}>
               <Typography variant="h6" >
                 Sustainability Q&A
               </Typography>
+              <div>
+                Feel free to ask a question below!
+                <img src={eco} style={{width: '100%', height: 150}} />
+              </div>
             </Paper>
           </Grid>
           {/* Chart */}

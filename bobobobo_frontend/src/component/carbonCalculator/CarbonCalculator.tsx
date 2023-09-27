@@ -33,6 +33,9 @@ import {
 } from "@mui/material";
 import Button from "@mui/material/Button";
 import { postMoment } from '../../utils/blogApi';
+import Avatar from "@mui/material/Avatar";
+import Header from "../Header";
+import {useNavigate} from "react-router-dom";
 
 // @ts-ignore
 const CarbonCalculator = () => {
@@ -551,8 +554,23 @@ const CarbonCalculator = () => {
             </>)
     };
 
+    const navigate = useNavigate();
+    const onClickAvatar = () => {
+        navigate('/profile');
+    }
+
     return (
-        <div className="carbonCalculator" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh'}}>
+        <div className="carbonCalculator">
+            <Header
+                title={"Carbon Calculator"}
+                left={
+                    <Button href="/landing" variant="text">
+                        Dashboard
+                    </Button>
+                }
+                right={
+                    <Avatar alt="Profile" src="/static/images/avatar/1.jpg" onClick={onClickAvatar} />}
+            />
             {!showEstimation && (
                 <div style={{ display: 'flex', width: '90%', height: '100%' }}>
                     <div style={{ flex: 1, padding: '10px' }}>
