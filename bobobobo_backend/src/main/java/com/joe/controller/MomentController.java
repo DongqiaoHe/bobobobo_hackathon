@@ -1,16 +1,14 @@
-package com.joe.login.controller;
+package com.joe.controller;
 
-import com.joe.login.bean.Comment;
-import com.joe.login.bean.Moment;
-import com.joe.login.bean.User;
-import com.joe.login.service.CommentService;
-import com.joe.login.service.JwtUtil;
-import com.joe.login.service.MomentService;
-import com.joe.login.service.UserService;
+import com.joe.bean.Comment;
+import com.joe.bean.Moment;
+import com.joe.service.CommentService;
+import com.joe.service.JwtUtil;
+import com.joe.service.MomentService;
+import com.joe.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -45,7 +43,7 @@ public class MomentController {
     public ResponseEntity<?> getMoment(@RequestHeader("Authorization") String token) {
         String username = JwtUtil.getUserUserFromToken(token);
         int userId = userService.getIdByUsername(username);
-        List<Moment> data = momentService.getMoment(userId);
+        List<Moment> data = momentService.getAllMoment(userId);
         return new ResponseEntity<>(data, HttpStatus.ACCEPTED); // 或者返回其他响应
     }
 
@@ -80,4 +78,9 @@ public class MomentController {
         return new ResponseEntity<>(data,HttpStatus.CREATED); // 或者返回其他响应
     }
 
+    @GetMapping("/all")
+    public ResponseEntity<?> getAllMoment() {
+        List<Moment> data = momentService.getAllMoments();
+        return new ResponseEntity<>(data, HttpStatus.ACCEPTED); // 或者返回其他响应
+    }
 }

@@ -1,14 +1,18 @@
-package com.joe.login.mapper;
+package com.joe.mapper;
 
-import com.joe.login.bean.User;
+import com.joe.bean.Quiz;
+import com.joe.bean.User;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
+
+import java.util.List;
 
 @Mapper
 public interface UserMapper {
 
-    @Insert("insert into user(username,password) values(#{username},#{password})")
+    @Insert("insert into user(username,password,quiz_correct,quiz_wrong) values(#{username},#{password},0,0)")
     void register(User user);
 
     @Select("select * from user where username=#{username}")
@@ -20,4 +24,9 @@ public interface UserMapper {
     @Select("select id from user where username=#{username}")
     int findByIdByUsername(String username);
 
+    @Update("update user set quiz_correct = quiz_correct + #{quiz_correct}, quiz_wrong = quiz_wrong + #{quiz_wrong} where id= #{id}")
+    void submitQuiz(Quiz quiz);
+
+    @Select("select * from user order by quiz_correct desc")
+    List<User> getRank();
 }

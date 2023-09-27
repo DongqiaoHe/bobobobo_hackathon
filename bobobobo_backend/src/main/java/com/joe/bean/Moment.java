@@ -1,4 +1,4 @@
-package com.joe.login.bean;
+package com.joe.bean;
 
 import lombok.Data;
 
@@ -13,6 +13,8 @@ public class Moment {
     private int star_num;
 
     private int user_id;
+
+    private String table_json;
 
 
 }

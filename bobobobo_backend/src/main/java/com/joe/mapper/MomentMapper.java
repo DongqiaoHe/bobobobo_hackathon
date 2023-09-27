@@ -1,6 +1,6 @@
-package com.joe.login.mapper;
+package com.joe.mapper;
 
-import com.joe.login.bean.Moment;
+import com.joe.bean.Moment;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
@@ -11,7 +11,7 @@ import java.util.List;
 @Mapper
 public interface MomentMapper {
 
-    @Insert("insert into moment(topic,content,star_num,user_id) values(#{topic},#{content},#{star_num},#{user_id})")
+    @Insert("insert into moment(topic,content,star_num,user_id, table_json) values(#{topic},#{content},#{star_num},#{user_id},#{table_json})")
     void postMoment(Moment moment);
 
     @Select("select * from moment where user_id = #{id}")
@@ -20,4 +20,6 @@ public interface MomentMapper {
     @Update("UPDATE moment SET star_num = star_num + 1 where id = #{id}")
     void addStar(Moment starRequest);
 
+    @Select("select * from moment")
+    List<Moment> getAllMoments();
 }
