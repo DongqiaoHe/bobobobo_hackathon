@@ -11,7 +11,7 @@ import java.util.List;
 @Mapper
 public interface MomentMapper {
 
-    @Insert("insert into moment(topic,content,star_num,user_id) values(#{topic},#{content},#{star_num},#{user_id})")
+    @Insert("insert into moment(topic,content,star_num,user_id, table_json) values(#{topic},#{content},#{star_num},#{user_id},#{table_json})")
     void postMoment(Moment moment);
 
     @Select("select * from moment where user_id = #{id}")

@@ -14,5 +14,7 @@ public class Moment {
 
     private int user_id;
 
+    private String table_json;
+
 
 }
