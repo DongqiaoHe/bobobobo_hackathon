@@ -1,19 +1,20 @@
-import React from "react";
-import { Routes, Route, BrowserRouter } from "react-router-dom";
-import "./App.css";
-import Login from "./app/Login";
-import Blog from "./component/blog/Blog";
-import SignUp from "./app/SignUp";
-import Profile from "./app/Profile";
-import { AuthProvider } from "./store/AuthContext";
-import { QuizProvider } from "./store/QuizContext";
-import { QuizScreen } from "./app/Quiz";
-import { ThemeProvider } from "@emotion/react";
-import { CssBaseline, createTheme } from "@mui/material";
-import LandingPage from "./app/Landing";
+import React from 'react'
+import { Routes, Route, BrowserRouter } from 'react-router-dom'
+import './App.css'
+import Login from './app/Login'
+import Blog from './component/blog/Blog'
+import SignUp from './app/SignUp'
+import Profile from './app/Profile'
+import { AuthProvider } from './store/AuthContext'
+import { QuizProvider } from './store/QuizContext'
+import { QuizScreen } from './app/Quiz'
+import { ThemeProvider } from '@emotion/react'
+import { CssBaseline, createTheme } from '@mui/material'
+import LandingPage from './app/Landing'
+import Store from './component/Store/Store'
 
 function App() {
-  const theme = createTheme();
+  const theme = createTheme()
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
@@ -27,13 +28,14 @@ function App() {
               <Route path="/blog" element={<Blog />} />
               <Route path="/profile" element={<Profile />} />
               <Route path="/quiz" element={<QuizScreen />} />
+              <Route path="/store" element={<Store />} />
               <Route path="*">"404 Not Found"</Route>
             </Routes>
           </BrowserRouter>
         </QuizProvider>
       </AuthProvider>
     </ThemeProvider>
-  );
+  )
 }
 
-export default App;
+export default App
