@@ -16,15 +16,13 @@ function createData(time: string, amount?: number) {
 }
 
 const data = [
-  createData('00:00', 0),
-  createData('03:00', 300),
-  createData('06:00', 600),
-  createData('09:00', 800),
-  createData('12:00', 1500),
-  createData('15:00', 2000),
-  createData('18:00', 2400),
-  createData('21:00', 2400),
-  createData('24:00', undefined),
+  createData('27 Sep', 0),
+  createData('26 Sep', 300),
+  createData('25 Sep', 600),
+  createData('24 Sep', 800),
+  createData('23 Sep', 1500),
+  createData('22 Sep', 2000),
+  createData('21 Sep', 2400),
 ]
 
 export default function Chart() {
@@ -32,7 +30,7 @@ export default function Chart() {
 
   return (
     <React.Fragment>
-      <Title>Today</Title>
+      <Title>Last 7 days</Title>
       <ResponsiveContainer>
         <LineChart
           data={data}

@@ -12,25 +12,24 @@ import { ThemeProvider } from "@emotion/react";
 import { CssBaseline, createTheme } from "@mui/material";
 
 function App() {
-
   const theme = createTheme();
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
       <AuthProvider>
-      <QuizProvider>
-        <BrowserRouter>
-          <Routes>
-            <Route path="/" element={<Login />} />
-            <Route path="/register" element={<SignUp />} />
-            <Route path="/blog" element={<Blog />} />
-            <Route path="/profile" element={<Profile />} />
-            <Route path="/quiz" element={<QuizScreen />} />
-            <Route path="*">"404 Not Found"</Route>
-          </Routes>
-        </BrowserRouter>
-      </QuizProvider>
-    </AuthProvider>
+        <QuizProvider>
+          <BrowserRouter>
+            <Routes>
+              <Route path="/" element={<Login />} />
+              <Route path="/register" element={<SignUp />} />
+              <Route path="/blog" element={<Blog />} />
+              <Route path="/profile" element={<Profile />} />
+              <Route path="/quiz" element={<QuizScreen />} />
+              <Route path="*">"404 Not Found"</Route>
+            </Routes>
+          </BrowserRouter>
+        </QuizProvider>
+      </AuthProvider>
     </ThemeProvider>
   );
 }
