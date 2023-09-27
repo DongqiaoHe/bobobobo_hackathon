@@ -18,20 +18,7 @@ export function RankingPage() {
             alignItems: "center",
           }}>
 
-            <div style={{
-              height: 300,
-              overflow: "hidden"
-            }}>
-              <img alt="podium" width="400" src="/podium.svg" />
-            </div>
-            <div style={{
-              width:400,
-              display: "flex",
-              justifyContent: "space-around",
-              color: theme.palette.grey["800"]
-            }}>
-              
-            </div>
+            
         </Paper>
       </PageContainer>
     </>

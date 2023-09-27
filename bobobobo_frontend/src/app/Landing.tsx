@@ -48,7 +48,7 @@ export default function LandingPage() {
       <main>
         <Box
           sx={{
-            bgcolor: 'background.paper',
+            bgcolor: '#f1f8e9',
             pt: 8,
             pb: 6,
           }}>

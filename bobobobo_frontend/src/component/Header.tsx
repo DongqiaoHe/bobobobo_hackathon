@@ -13,7 +13,7 @@ export default function Header(props: HeaderProps) {
 
   return (
     <React.Fragment>
-      <Toolbar sx={{ borderBottom: 1, borderColor: "divider" }}>
+      <Toolbar sx={{ borderBottom: 1, borderColor: "divider", backgroundColor: '#f1f8e9' }}>
         {
             props.left? React.cloneElement(props.left): null
         }

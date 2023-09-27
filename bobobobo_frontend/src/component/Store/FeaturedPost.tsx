@@ -59,6 +59,7 @@ export default function FeaturedPost(props: FeaturedPostProps) {
             }} color="success">
               See more
             </Button>
+            
           </CardContent>
         </CardActionArea>
       </Card>

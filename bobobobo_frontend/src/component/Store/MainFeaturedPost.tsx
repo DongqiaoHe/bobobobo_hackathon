@@ -4,7 +4,8 @@ import Typography from '@mui/material/Typography';
 import Grid from '@mui/material/Grid';
 import Link from '@mui/material/Link';
 import Box from '@mui/material/Box';
-import { Button } from '@mui/material';
+import { Button, ThemeProvider, createTheme } from '@mui/material';
+import { CommentRounded, ThumbUpAltRounded } from '@mui/icons-material';
 
 interface MainFeaturedPostProps {
     post: {
@@ -18,7 +19,14 @@ interface MainFeaturedPostProps {
 
 export default function MainFeaturedPost(props: MainFeaturedPostProps) {
     const { post } = props;
-
+    const theme = createTheme({
+        palette: {
+          mode: 'light',
+          primary: {
+            main: '#fff',
+          },
+        },
+      })
     return (
         <Paper
             sx={{
@@ -65,6 +73,32 @@ export default function MainFeaturedPost(props: MainFeaturedPostProps) {
                     </Box>
                 </Grid>
             </Grid>
+            <div style={{
+              position: 'absolute',
+              display: 'flex',
+              justifyContent: 'flex-end',
+              alignItems: 'flex-end',
+              right: 8,
+              bottom: 8,
+              height: 80,
+              width: 140,
+              gap: 8
+            }}>
+                <ThemeProvider theme={theme}>
+                    <Button variant='text' color="primary" style={{
+                    height: 40,
+                    width: 40,
+                }}>
+                    <CommentRounded />
+                </Button>
+                <Button variant='text' color="primary" style={{
+                    height: 40,
+                    width: 40,
+                }}>
+                    <ThumbUpAltRounded />
+                </Button>
+                </ThemeProvider>
+            </div>
         </Paper>
     );
 }
