@@ -31,7 +31,7 @@ export default function Profile() {
       <Header
         title="Earth Protector"
         left={
-          <Button href="/blog" variant="text">
+          <Button href="/landing" variant="text">
             Dashboard
           </Button>
         }

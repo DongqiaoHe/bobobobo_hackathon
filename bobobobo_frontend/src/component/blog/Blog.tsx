@@ -7,31 +7,36 @@ import Header from '../Header';
 import MainFeaturedPost from './MainFeaturedPost';
 import FeaturedPost from './FeaturedPost';
 import Footer from './Footer';
+import Box from "@mui/material/Box";
+import Avatar from "@mui/material/Avatar";
+import {useNavigate} from "react-router-dom";
+import {Button} from "@mui/material";
+import {useEffect} from "react";
 
 const mainFeaturedPost = {
     title: 'Renewable Energy',
     description:
         "Shifting from fossil fuels to renewable energy sources like solar, wind, and hydropower is a fundamental part of environmental sustainability. This reduces greenhouse gas emissions and lessens reliance on finite resources.",
-    image: 'https://source.unsplash.com/random?wallpapers',
+    image: 'https://source.unsplash.com/random?forest',
     imageText: 'main image description',
     linkText: 'Continue reading…',
 };
 
 const featuredPosts = [
     {
-        title: 'Featured post',
-        date: 'Nov 12',
+        title: 'Waste Reduction and Recycling',
+        date: 'Sep 12',
         description:
-            'This is a wider card with supporting text below as a natural lead-in to additional content.',
-        image: 'https://source.unsplash.com/random?wallpapers',
+            'Sustainability encourages waste reduction and efficient recycling programs to divert materials from landfills and reduce pollution.',
+        image: 'https://source.unsplash.com/random?recycle',
         imageLabel: 'Image Text',
     },
     {
-        title: 'Post title',
-        date: 'Nov 11',
+        title: 'Efficient Water Management',
+        date: 'Sep 20',
         description:
-            'This is a wider card with supporting text below as a natural lead-in to additional content.',
-        image: 'https://source.unsplash.com/random?wallpapers',
+            'Sustainable water management involves conserving water resources and ensuring access to clean and safe drinking water for all.',
+        image: 'https://source.unsplash.com/random?water',
         imageLabel: 'Image Text',
     },
 ];
@@ -42,11 +47,33 @@ const featuredPosts = [
 const defaultTheme = createTheme();
 
 export default function Blog() {
+    const navigate = useNavigate();
+    const onClickAvatar = () => {
+        navigate('/profile');
+    }
+    const url = window.location.href;
+
     return (
         <ThemeProvider theme={defaultTheme}>
             <CssBaseline />
+            {url.includes('blog') ? <Header
+                title={"Eco-Blog"}
+                left={
+                    <Button href="/landing" variant="text">
+                        Dashboard
+                    </Button>
+                }
+                right={
+                    <Avatar alt="Profile" src="/static/images/avatar/1.jpg" onClick={onClickAvatar} />}
+            /> : null}
+            <Box
+                sx={{
+                    bgcolor: 'background.paper',
+                    pt: 8,
+                    pb: 6,
+                }}
+            >
             <Container maxWidth="lg">
-                <Header title="Blog" />
                 <main>
                     <MainFeaturedPost post={mainFeaturedPost} />
                     <Grid container spacing={4}>
@@ -60,6 +87,7 @@ export default function Blog() {
                 title="Share your post :)"
                 description="Share to your friends and family!"
             />
+            </Box>
         </ThemeProvider>
     );
 }

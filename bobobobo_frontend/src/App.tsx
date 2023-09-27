@@ -10,6 +10,7 @@ import { QuizProvider } from "./store/QuizContext";
 import { QuizScreen } from "./app/Quiz";
 import { ThemeProvider } from "@emotion/react";
 import { CssBaseline, createTheme } from "@mui/material";
+import LandingPage from "./app/Landing";
 
 function App() {
   const theme = createTheme();
@@ -21,6 +22,7 @@ function App() {
           <BrowserRouter>
             <Routes>
               <Route path="/" element={<Login />} />
+              <Route path="/landing" element={<LandingPage />} />
               <Route path="/register" element={<SignUp />} />
               <Route path="/blog" element={<Blog />} />
               <Route path="/profile" element={<Profile />} />
