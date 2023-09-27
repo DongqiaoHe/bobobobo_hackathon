@@ -7,6 +7,8 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 
+import java.util.List;
+
 @Mapper
 public interface UserMapper {
 
@@ -24,4 +26,7 @@ public interface UserMapper {
 
     @Update("update user set quiz_correct = quiz_correct + #{quiz_correct}, quiz_wrong = quiz_wrong + #{quiz_wrong} where id= #{id}")
     void submitQuiz(Quiz quiz);
+
+    @Select("select * from user order by quiz_correct desc")
+    List<User> getRank();
 }

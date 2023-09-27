@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.DigestUtils;
 
+import java.util.List;
+
 @Service
 public class UserService {
     @Autowired
@@ -43,5 +45,15 @@ public class UserService {
     public void submitQuiz(Quiz quiz) {
         userMapper.submitQuiz(quiz);
         System.out.println("quiz submit in service");
+    }
+
+    public List<User> getRank() {
+    //        获取所有用户，按照分数排序
+        List<User> users = userMapper.getRank();
+        // 返回前三
+        if (users.size() > 3) {
+            return users.subList(0, 3);
+        }
+        return users;
     }
 }

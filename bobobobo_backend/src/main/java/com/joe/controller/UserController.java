@@ -61,5 +61,11 @@ public class UserController {
     }
 
 
+    @GetMapping("/quiz/rank")
+    public ResponseEntity<?> getRank(){
+        return new ResponseEntity<>(userService.getRank(), HttpStatus.OK);
+    }
+
+
 //eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0IiwiaWF0IjoxNjk1Nzc1MjYzLCJleHAiOjE2OTYwMzQ0NjN9.pm-buXi8elAfbiDOY8iWrYtvOSueAfZ8PLXZQSoipk0
 }
