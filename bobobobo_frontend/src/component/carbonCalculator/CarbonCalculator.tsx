@@ -482,27 +482,6 @@ const CarbonCalculator = () => {
                                                 alt="resultPageImg"
                                                 style={{ maxWidth: '100%', height: 'auto' }}
                                             />
-                                            <br/><br/>
-                                            <div>
-                                                <Button
-                                                    variant="contained"
-                                                    endIcon={<RestartAltIcon />}
-                                                    sx={{ backgroundColor: '#FCB44F', color: '#252525' }}
-                                                    onClick={handleResetOnClick}
-                                                >
-                                                    RESET
-                                                </Button>
-                                            </div>
-
-                                            <br/>
-                                            <Button
-                                                variant="contained"
-                                                endIcon={<ShareIcon />}
-                                                sx={{ backgroundColor: '#FCB44F', color: '#252525' }}
-                                                onClick={handleShareOnClick}
-                                            >
-                                                Share To Community
-                                            </Button>
                                         </>)
                                     }
 
@@ -521,33 +500,12 @@ const CarbonCalculator = () => {
                                                 <Tooltip formatter={tooltipFormatter}/>
                                                 <Bar dataKey="carbon" fill="#6a8d6d" background={{ fill: '#eee' }} />
                                             </BarChart>
-
                                             <br/>
-                                            <div>
-                                                <Button
-                                                    variant="contained"
-                                                    endIcon={<RestartAltIcon />}
-                                                    sx={{ backgroundColor: '#FCB44F', color: '#252525' }}
-                                                    onClick={handleResetOnClick}
-                                                >
-                                                    RESET
-                                                </Button>
-
-                                                <br/><br/>
-                                                <Button
-                                                    variant="contained"
-                                                    endIcon={<ShareIcon />}
-                                                    sx={{ backgroundColor: '#FCB44F', color: '#252525' }}
-                                                    onClick={handleShareOnClick}
-                                                >
-                                                    Share To Community
-                                                </Button>
-                                            </div>
                                         </>
                                     )}
 
                                 </div>
-                                <div style={{ flex: 1, padding: '10px' }}>
+                                <div style={{ flex: 1, padding: '10px'}}>
                                     {customCard({
                                         value: largestCarbon,
                                         description: 'carbon emission per year',
@@ -560,6 +518,27 @@ const CarbonCalculator = () => {
                                         value: lessThanAvg.toFixed(2),
                                         description: 'less than % average energy usage in Australia',
                                     })}
+
+                                    <div style={{display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center'}}>
+                                        <br/>
+                                        <Button
+                                            variant="contained"
+                                            endIcon={<RestartAltIcon />}
+                                            sx={{ backgroundColor: '#FCB44F', color: '#252525' }}
+                                            onClick={handleResetOnClick}
+                                        >
+                                            RESET
+                                        </Button>
+                                        <br/>
+                                        <Button
+                                            variant="contained"
+                                            endIcon={<ShareIcon />}
+                                            sx={{ backgroundColor: '#FCB44F', color: '#252525' }}
+                                            onClick={handleShareOnClick}
+                                        >
+                                            Share With Community
+                                        </Button>
+                                    </div>
                                 </div>
                             </div>
                         </div>
