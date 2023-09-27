@@ -11,8 +11,8 @@ import {
 import Title from './Title'
 
 const data = [
-  { month: 'January', amount: 5000 },
-  { month: 'February', amount: 4800 },
+  { name: 'Yours', amount: 5000 },
+  { name: 'Average', amount: 4800 },
 ]
 
 export default function BarChartComponent() {
@@ -20,7 +20,7 @@ export default function BarChartComponent() {
 
   return (
     <React.Fragment>
-      <Title>Today</Title>
+      <Title>Comparison</Title>
       <ResponsiveContainer>
         <BarChart
           data={data}
@@ -31,7 +31,7 @@ export default function BarChartComponent() {
             left: 24,
           }}>
           <XAxis
-            dataKey="time"
+            dataKey="name"
             stroke={theme.palette.text.secondary}
             style={theme.typography.body2}
           />
