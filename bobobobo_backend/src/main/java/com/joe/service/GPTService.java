@@ -1,4 +1,4 @@
-package com.joe.chatgpt.service;
+package com.joe.service;
 
 import com.joe.chatgpt.ChatGPTExample;
 

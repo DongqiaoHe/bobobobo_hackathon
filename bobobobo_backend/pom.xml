@@ -11,7 +11,7 @@
     <groupId>com.joe</groupId>
     <artifactId>bobobobo</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>login</name>
+    <name>bobobobo</name>
     <description>login</description>
     <properties>
         <java.version>17</java.version>
