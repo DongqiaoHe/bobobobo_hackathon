@@ -5,6 +5,9 @@ import Header from "../component/Header";
 import { PageContainer } from "../component/PageContainer";
 import questions from "../data/questions.json"
 import axios from "axios";
+import Avatar from "@mui/material/Avatar";
+import * as React from "react";
+import {useNavigate} from "react-router-dom";
 
 const shuffleArray = (array:any[]) => {
   let tempArray = [...array]; // Create a copy so we don't modify the original
@@ -43,6 +46,10 @@ export type QuizAnswersType = {
 };
 
 export function QuizScreen() {
+  const navigate = useNavigate();
+  const onClickAvatar = () => {
+    navigate('/profile');
+  }
   const [quizAnswers, setQuizAnswers] = useState<QuizAnswersType>({});
   const [current, setCurrent] = useState<number>(0);
   const [score, setScore] = useState<number>(0);
@@ -71,7 +78,16 @@ export function QuizScreen() {
 
   return (
     <>
-      <Header title="Quiz" />
+      <Header
+          title="Quiz"
+          left={
+            <Button href="/landing" variant="text">
+              Dashboard
+            </Button>
+          }
+          right={
+            <Avatar alt="Profile" src="/static/images/avatar/1.jpg" onClick={onClickAvatar} />}
+      />
       <PageContainer>
         <Paper
           sx={{
