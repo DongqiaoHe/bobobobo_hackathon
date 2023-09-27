@@ -5,6 +5,7 @@ import Card from '@mui/material/Card'
 import CardActionArea from '@mui/material/CardActionArea'
 import CardContent from '@mui/material/CardContent'
 import CardMedia from '@mui/material/CardMedia'
+import { Button } from '@mui/material'
 
 interface FeaturedPostProps {
   post: {
@@ -47,15 +48,17 @@ export default function FeaturedPost(props: FeaturedPostProps) {
             <Typography
               variant="body2"
               sx={{
-                whiteSpace: 'nowrap',
+                height: "2.5rem",
                 overflow: 'hidden',
                 textOverflow: 'ellipsis',
               }}>
               {post.description}
             </Typography>
-            <Typography variant="subtitle1" color="primary">
+            <Button variant="text" style={{
+              marginTop: 18
+            }} color="success">
               See more
-            </Typography>
+            </Button>
           </CardContent>
         </CardActionArea>
       </Card>

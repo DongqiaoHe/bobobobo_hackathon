@@ -1,10 +1,10 @@
-import React, {useCallback, useMemo, useEffect, useState } from 'react';
+import React, { useCallback, useMemo, useEffect, useState } from 'react';
 import InputAdornment from '@mui/material/InputAdornment';
 import TextField from '@mui/material/TextField';
 import carbonFootprintLogo from '../../image/footprintLogo.jpg';
 import resultPageImg from '../../image/resultPageImg.jpg';
 import AddIcon from '@mui/icons-material/Add';
-import {ApplianceWattage} from "./ApplianceWattages";
+import { ApplianceWattage } from "./ApplianceWattages";
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import ShareIcon from '@mui/icons-material/Share';
 import {
@@ -35,7 +35,8 @@ import Button from "@mui/material/Button";
 import { postMoment } from '../../utils/blogApi';
 import Avatar from "@mui/material/Avatar";
 import Header from "../Header";
-import {useNavigate} from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import { useTheme } from '@mui/material';
 
 // @ts-ignore
 const CarbonCalculator = () => {
@@ -70,6 +71,7 @@ const CarbonCalculator = () => {
     const [gasUsageInCarbon, setGasUsageInCarbon] = useState(0);
     const [showEstimation, setShowEstimation] = useState(false);
     const [selectedTimeFrame, setSelectedTimeFrame] = useState(timeframes[0].value);
+    const theme = useTheme();
 
     useEffect(() => {
         setElectricityUsageInCarbon(electricityUsage * 0.85);
@@ -82,7 +84,7 @@ const CarbonCalculator = () => {
     }, [inputtedActivities]);
 
     const totalCarbonByActivity = useMemo(() => {
-        return inputtedActivities.reduce((acc:any, curr:any) => acc + curr.carbon, 0);
+        return inputtedActivities.reduce((acc: any, curr: any) => acc + curr.carbon, 0);
     }, [inputtedActivities]);
 
     const totalCarbonByBill = useMemo(() => {
@@ -98,12 +100,12 @@ const CarbonCalculator = () => {
     }, [largestCarbon]);
 
     const convertToYearly = useCallback(
-        (value: number) => {return (12 / selectedTimeFrame) * value;}, [selectedTimeFrame]);
+        (value: number) => { return (12 / selectedTimeFrame) * value; }, [selectedTimeFrame]);
 
     const planeRounds = useMemo(() => {
         return Math.round(convertToYearly(Number(largestCarbon)) / 0.115 / 758);
     }, [convertToYearly, largestCarbon]);
-    const handleEstimationBtnOnClick = () => {setShowEstimation(true);};
+    const handleEstimationBtnOnClick = () => { setShowEstimation(true); };
     const handleUtilityButtonClick = () => {
         setShowUtilityFields(true);
         setShowActivityDropdown(false);
@@ -139,10 +141,10 @@ const CarbonCalculator = () => {
         }
     };
 
-    const handleNumericInputChange = (event:any, setterFunc:any) => {
+    const handleNumericInputChange = (event: any, setterFunc: any) => {
         const value = event.target.value;
         const numericRegex = /^[0-9]*$/; // This regex matches any string that contains only digits.
-        if ((numericRegex.test(value) || value === "")&& value <= 100000) {
+        if ((numericRegex.test(value) || value === "") && value <= 100000) {
             setterFunc(value);
         }
     };
@@ -169,7 +171,7 @@ const CarbonCalculator = () => {
                 <Container disableGutters maxWidth="sm" style={{ marginTop: "20px" }}>
                     <br /><br />
                     <Typography component="h3" variant="h4" align="center" color="textPrimary" gutterBottom>
-                        Calculate Your <span style={{ color: '#E88D2E' }}>Carbon Footprint</span>
+                        Calculate Your <span style={{ color: theme.palette.success.main }}>Carbon Footprint</span>
                     </Typography>
                     <br />
                     <Typography variant="body1" align="center" color="textSecondary" component="p">
@@ -182,14 +184,15 @@ const CarbonCalculator = () => {
     };
     const appBar = () => {
         return (
-            <AppBar component="div" position="static" elevation={0} sx={{ backgroundColor: "white",  zIndex: 1}}>
+            <AppBar component="div" position="static" elevation={0} sx={{ backgroundColor: "white", zIndex: 1 }}>
                 <div style={{ display: "flex", justifyContent: "center" }}>
-                    <Tabs value={showActivityDropdown ? 0 : 1} textColor="inherit" sx={{"& .MuiTabs-indicator": {display: "none"},
-                        "& .Mui-selected": {color: '#5e8c43', fontWeight: "bold", },
-                        "& .MuiTab-root": {textTransform: "none", color: '#9db86e', fontSize: "18px" },
+                    <Tabs value={showActivityDropdown ? 0 : 1} sx={{
+                        "& .MuiTabs-indicator": { display: "none" },
+                        "& .Mui-selected": { color: '#5e8c43', fontWeight: "bold", },
+                        "& .MuiTab-root": { textTransform: "none", color: theme.palette.success.main, fontSize: "18px" },
                     }}>
-                        <Tab label="Track Activities" onClick={handleActivityButtonClick}/>
-                        <Tab label="Track Utility Bill" onClick={handleUtilityButtonClick}/>
+                        <Tab label="Track Activities" onClick={handleActivityButtonClick} />
+                        <Tab label="Track Utility Bill" onClick={handleUtilityButtonClick} />
                     </Tabs>
                 </div>
             </AppBar>
@@ -204,9 +207,8 @@ const CarbonCalculator = () => {
                     <Select
                         label="Select Activity"
                         sx={{
-                            m: 1,
-                            width: '25ch',
-                            height: '2rem',
+                            width: '300px',
+                            m:1,
                             border: '1px solid lightgrey',
                             borderRadius: '4px',
                         }}
@@ -220,14 +222,14 @@ const CarbonCalculator = () => {
                         ))}
                     </Select>
                 </FormControl>
-                <br/>
+                <br />
                 <TextField
                     label="Time of Usage"
                     type="number"
                     id="outlined-start-adornment-time"
-                    sx={{ m: 1, width: '26ch', height: '2rem', color: '#E88D2E' }}
+                    sx={{ m: 1, width: '300px', height: '2rem', color: '#E88D2E' }}
                     InputProps={{
-                        startAdornment: <InputAdornment position="start">hour(s)</InputAdornment>,
+                        endAdornment: <InputAdornment position="start">hour(s)</InputAdornment>,
                     }}
                     value={timeOfUsage}
                     onChange={(e) => setTimeOfUsage(parseFloat(e.target.value))}
@@ -239,19 +241,18 @@ const CarbonCalculator = () => {
         return (
             <div>
                 <>
-                    <FormControl variant="outlined">
-                        <InputLabel shrink>Select Activity</InputLabel>
+                    <FormControl variant="outlined" >
+                        <InputLabel shrink>Select Months</InputLabel>
                         <Select
-                            label="Select Activity"
+                            label="Select Months"
                             sx={{
                                 m: 1,
-                                width: '25ch',
-                                height: '2rem',
+                                width: '300px',
                                 border: '1px solid lightgrey',
                                 borderRadius: '4px',
                             }}
                             value={selectedTimeFrame}
-                            onChange={e=>{
+                            onChange={e => {
                                 handleSelectedTimeFrameChange(e.target.value);
                             }}
                         >
@@ -262,21 +263,21 @@ const CarbonCalculator = () => {
                             ))}
                         </Select>
                     </FormControl>
-                    <br/>
+                    <br />
                     <TextField
                         label="Electricity Used"
                         type="number"
                         id="outlined-start-adornment-electricity"
-                        sx={{ m: 1, width: '25ch', height: '2rem', color: '#E88D2E' }}
+                        sx={{ m: 1, width: '300px' }}
                         value={electricityUsage}
                         onChange={(event) => {
                             handleNumericInputChange(event, setElectricityUsage);
                         }}
                         InputProps={{
-                            startAdornment: <InputAdornment position="start">kWh</InputAdornment>,
+                            endAdornment: <InputAdornment position="start">kWh</InputAdornment>,
                         }}
                     />
-                    <br/><br/>
+                    <br /><br />
                     <Typography
                         marginLeft={2}
                         variant="h6"
@@ -284,21 +285,21 @@ const CarbonCalculator = () => {
                     >
                         ≈ <strong>{electricityUsageInCarbon.toFixed(2)}</strong>  kg CO2
                     </Typography>
-                    <br/>
+                    <br />
                     <TextField
                         label="Gas Used"
                         type="number"
                         id="outlined-start-adornment-gas"
-                        sx={{ m: 1, width: '25ch', height: '2rem', color: '#E88D2E', }}
+                        sx={{ m: 1, width: '300px', color: '#E88D2E', }}
                         value={gasUsage}
                         onChange={(event) => {
                             handleNumericInputChange(event, setGasUsage);
                         }}
                         InputProps={{
-                            startAdornment: <InputAdornment position="start">MJ</InputAdornment>,
+                            endAdornment: <InputAdornment position="start">MJ</InputAdornment>,
                         }}
                     />
-                    <br/><br/>
+                    <br /><br />
                     <Typography
                         marginLeft={2}
                         variant="h6"
@@ -306,7 +307,14 @@ const CarbonCalculator = () => {
                     >
                         ≈ <strong>{gasUsageInCarbon.toFixed(2)}</strong> kg CO2
                     </Typography>
-                    <br/><br/>
+                    <div>
+                    <Button onClick={handleEstimationBtnOnClick} style={{
+                        marginTop: "24px",
+                        marginBottom: "24px"
+                    }} variant="contained" endIcon={<ArrowForwardIosIcon />} color="success">
+                        Check Your Estimation
+                    </Button>
+                </div>
                 </>
             </div>
         )
@@ -316,8 +324,8 @@ const CarbonCalculator = () => {
         return (
             <Button
                 variant="contained"
+                color="success"
                 endIcon={<AddIcon />}
-                sx={{ backgroundColor: '#FCB44F', color: '#252525' }}
                 onClick={handleAddButtonClick}
             >
                 ADD
@@ -337,7 +345,7 @@ const CarbonCalculator = () => {
                             </TableRow>
                         </TableHead>
                         <TableBody>
-                            {inputtedActivities.map((activity:any, index:any) => (
+                            {inputtedActivities.map((activity: any, index: any) => (
                                 <TableRow
                                     key={index}
                                     sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
@@ -373,9 +381,9 @@ const CarbonCalculator = () => {
                 alignItems: 'center'
             }}>
                 {userInputTrackActivity()}
-                <br /><br/>
+                <br /><br />
                 {addBtn()}
-                <br/>
+                <br />
                 {inputtedActivities.length > 0 && showActivitiesEntered()}
                 {carbonCalculatedForActivities()}
             </div>
@@ -383,19 +391,17 @@ const CarbonCalculator = () => {
     };
     const rightPanelImg = () => {
         return (
-            <div style={{ flex: 1, padding: '20px', display: 'flex', flexDirection: 'column', justifyContent: 'center',
-                alignItems: 'center', }}>
+            <div style={{
+                flex: 1, padding: '20px', display: 'flex', flexDirection: 'column', justifyContent: 'center',
+                alignItems: 'center',
+            }}>
                 <img
                     src={carbonFootprintLogo}
                     alt="carbonFootprintLogo"
                     style={{ maxWidth: '100%', height: 'auto' }}
                 />
-                <br/>
-                <div>
-                    <Button onClick={handleEstimationBtnOnClick} variant="contained" endIcon={<ArrowForwardIosIcon />} sx={{ backgroundColor: '#5e8c43', color: '#252525' }}>
-                        Check Your Estimation
-                    </Button>
-                </div>
+                <br />
+                
             </div>
         );
     };
@@ -412,21 +418,32 @@ const CarbonCalculator = () => {
     };
     const carbonCalculatedForActivities = () => {
         return (
-            <div>
-                <br/>
-                <Typography sx={{ fontSize: "1.1rem" }}>
+            <div style={{
+                alignItems: "center",
+                justifyContent: "center",
+                marginTop: "18px"
+            }}>
+                <Typography sx={{ fontSize: "1.1rem", textAlign: "center" }}>
                     Total Carbon Footprint
                 </Typography>
-                <Typography sx={{ fontSize: "4rem" }}>
-                                <span style={{ color: '#5e8c43' }}>
-                                    {resultActivityUsage.toFixed(2)}
-                                </span>
+                <Typography sx={{ fontSize: "4rem", textAlign: "center" }}>
+                    <span style={{ color: '#5e8c43' }}>
+                        {resultActivityUsage.toFixed(2)}
+                    </span>
                 </Typography>
                 <Typography
-                    sx={{ fontSize: "1.3rem", color: '#252525' }}
+                    sx={{ fontSize: "1.3rem", color: '#252525', textAlign: "center" }}
                 >
                     kg CO2
                 </Typography>
+                <div>
+                    <Button onClick={handleEstimationBtnOnClick} style={{
+                        marginTop: "24px",
+                        marginBottom: "24px"
+                    }} variant="contained" endIcon={<ArrowForwardIosIcon />} color="success">
+                        Check Your Estimation
+                    </Button>
+                </div>
             </div>
         )
     };
@@ -452,11 +469,11 @@ const CarbonCalculator = () => {
                     }}
                 >
                     <Typography variant="h3">{value}</Typography>
-                    <Typography variant="subtitle2" sx={{ opacity: 0.72, color:'#252525' }}>
+                    <Typography variant="subtitle2" sx={{ opacity: 0.72, color: '#252525' }}>
                         {description}
                     </Typography>
                 </Card>
-                <br/>
+                <br />
             </>
         );
     }
@@ -469,12 +486,12 @@ const CarbonCalculator = () => {
                 <div style={{ display: 'flex', width: '80%', height: '80%' }}>
                     <Container maxWidth="xl">
                         <Typography component="h3" variant="h4" align="center" color="textPrimary" gutterBottom>
-                            Your <span style={{ color: '#E88D2E' }}>Carbon Footprint</span> Estimation
+                            Your <span style={{ color: theme.palette.success.main }}>Carbon Footprint</span> Estimation
                         </Typography>
-                        <br/>
-                        <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh'}}>
-                            <div style={{ display: 'flex', width: '100%', height: '100%'}}>
-                                <div style={{ flex: 1, padding: '10px', marginRight: '50px'  }}>
+                        <br />
+                        <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
+                            <div style={{ display: 'flex', width: '100%', height: '100%' }}>
+                                <div style={{ flex: 1, padding: '10px', marginRight: '50px' }}>
                                     {((inputtedActivities.length === 0 && electricityUsage === 0 && gasUsage === 0) || (electricityUsage > 0 || gasUsage > 0)) && (
                                         <>
                                             <img
@@ -487,7 +504,7 @@ const CarbonCalculator = () => {
 
                                     {!(totalCarbonByBill > 0) && (
                                         <>
-                                            <br/>
+                                            <br />
                                             <BarChart
                                                 width={450}
                                                 height={300}
@@ -497,15 +514,15 @@ const CarbonCalculator = () => {
                                                 <XAxis
                                                     dataKey="activity"
                                                 />
-                                                <Tooltip formatter={tooltipFormatter}/>
+                                                <Tooltip formatter={tooltipFormatter} />
                                                 <Bar dataKey="carbon" fill="#6a8d6d" background={{ fill: '#eee' }} />
                                             </BarChart>
-                                            <br/>
+                                            <br />
                                         </>
                                     )}
 
                                 </div>
-                                <div style={{ flex: 1, padding: '10px'}}>
+                                <div style={{ flex: 1, padding: '10px' }}>
                                     {customCard({
                                         value: largestCarbon,
                                         description: 'carbon emission per year',
@@ -519,21 +536,19 @@ const CarbonCalculator = () => {
                                         description: 'less than % average energy usage in Australia',
                                     })}
 
-                                    <div style={{display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center'}}>
-                                        <br/>
+                                    <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
+                                        <br />
                                         <Button
                                             variant="contained"
                                             endIcon={<RestartAltIcon />}
-                                            sx={{ backgroundColor: '#FCB44F', color: '#252525' }}
                                             onClick={handleResetOnClick}
                                         >
                                             RESET
                                         </Button>
-                                        <br/>
+                                        <br />
                                         <Button
                                             variant="contained"
                                             endIcon={<ShareIcon />}
-                                            sx={{ backgroundColor: '#FCB44F', color: '#252525' }}
                                             onClick={handleShareOnClick}
                                         >
                                             Share With Community
@@ -565,18 +580,20 @@ const CarbonCalculator = () => {
                 right={
                     <Avatar alt="Profile" src="/static/images/avatar/1.jpg" onClick={onClickAvatar} />}
             />
-            <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh'}}>
+            <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
                 {!showEstimation && (
                     <div style={{ display: 'flex', width: '800%', height: '100%' }}>
                         <div style={{ flex: 1, padding: '10px' }}>
                             <div style={{ width: '100%', height: '100%', border: 'none', padding: '10px', resize: 'none' }}>
                                 {headerText()}
                                 <DividerWithText text="●・○・●・○・●" />
-                                <br/>
+                                <br />
                                 {appBar()}
-                                <Container maxWidth="md" style={{display: 'flex', flexDirection: 'column', justifyContent: 'center',
-                                    alignItems: 'center'}}>
-                                    <br/>
+                                <Container maxWidth="md" style={{
+                                    display: 'flex', flexDirection: 'column', justifyContent: 'center',
+                                    alignItems: 'center'
+                                }}>
+                                    <br />
                                     {showActivityDropdown && activityDropDownMenu()}
                                     {showUtilityFields && userInputTrackUtilityBill()}
                                 </Container>

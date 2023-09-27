@@ -8,13 +8,12 @@ import Toolbar from '@mui/material/Toolbar'
 import Typography from '@mui/material/Typography'
 import Container from '@mui/material/Container'
 import Link from '@mui/material/Link'
-import { createTheme, ThemeProvider } from '@mui/material/styles'
+import { createTheme, ThemeProvider, useTheme } from '@mui/material/styles'
 import Blog from '../component/blog/Blog'
 import { useNavigate } from 'react-router-dom'
 import Header from '../component/Header'
 import Avatar from '@mui/material/Avatar'
 
-const defaultTheme = createTheme()
 
 export default function LandingPage() {
   const navigate = useNavigate()
@@ -33,14 +32,14 @@ export default function LandingPage() {
   const onClickStore = () => {
     navigate('/store')
   }
+  const theme = useTheme();
   return (
-    <ThemeProvider theme={defaultTheme}>
+    <>
       <Header
         title={'Welcome to GreenLife: Your Sustainable Journey Starts Here'}
         right={
           <Avatar
             alt="Profile"
-            src="/static/images/avatar/1.jpg"
             onClick={onClickAvatar}
           />
         }
@@ -77,8 +76,8 @@ export default function LandingPage() {
               <Button
                 variant="contained"
                 style={{
-                  borderRadius: 35,
-                  backgroundColor: '#74B72E',
+                  borderRadius: 15,
+                  backgroundColor: theme.palette.success.main,
                   padding: '18px 30px',
                   fontSize: '20px',
                   textTransform: 'none',
@@ -91,8 +90,8 @@ export default function LandingPage() {
                 variant="contained"
                 fullWidth
                 style={{
-                  borderRadius: 35,
-                  backgroundColor: '#74B72E',
+                  borderRadius:  15,
+                  backgroundColor: theme.palette.success.main,
                   padding: '18px 30px',
                   fontSize: '20px',
                   textTransform: 'none',
@@ -104,8 +103,8 @@ export default function LandingPage() {
                 variant="contained"
                 fullWidth
                 style={{
-                  borderRadius: 35,
-                  backgroundColor: '#74B72E',
+                  borderRadius: 15,
+                  backgroundColor: theme.palette.success.main,
                   padding: '18px 30px',
                   fontSize: '20px',
                   textTransform: 'none',
@@ -117,8 +116,8 @@ export default function LandingPage() {
                 variant="contained"
                 fullWidth
                 style={{
-                  borderRadius: 35,
-                  backgroundColor: '#74B72E',
+                  borderRadius: 15,
+                  backgroundColor: theme.palette.success.main,
                   padding: '18px 30px',
                   fontSize: '20px',
                   textTransform: 'none',
@@ -133,6 +132,6 @@ export default function LandingPage() {
           </Container>
         </Box>
       </main>
-    </ThemeProvider>
+    </>
   )
 }

@@ -15,7 +15,17 @@ import Store from './component/Store/Store'
 import CarbonCalculator from './component/carbonCalculator/CarbonCalculator'
 
 function App() {
-  const theme = createTheme()
+  const theme = createTheme({
+    palette: {
+      mode: 'light',
+      primary: {
+        main: '#2e7d32',
+      },
+      secondary: {
+        main: '#f50057',
+      },
+    },
+  })
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />

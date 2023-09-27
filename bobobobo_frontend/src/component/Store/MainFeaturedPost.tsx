@@ -4,6 +4,7 @@ import Typography from '@mui/material/Typography';
 import Grid from '@mui/material/Grid';
 import Link from '@mui/material/Link';
 import Box from '@mui/material/Box';
+import { Button } from '@mui/material';
 
 interface MainFeaturedPostProps {
     post: {
@@ -58,9 +59,9 @@ export default function MainFeaturedPost(props: MainFeaturedPostProps) {
                         <Typography variant="h5" color="inherit" paragraph>
                             {post.description}
                         </Typography>
-                        <Link variant="subtitle1" href="#">
+                        <Button variant="contained" href="#">
                             {post.linkText}
-                        </Link>
+                        </Button>
                     </Box>
                 </Grid>
             </Grid>

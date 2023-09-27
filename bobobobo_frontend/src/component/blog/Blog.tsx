@@ -62,7 +62,7 @@ export default function Blog() {
             {url.includes('blog') ? <Header
                 title={"Eco-Blog"}
                 left={
-                    <Button href="/landing" variant="text">
+                    <Button href="/landing" variant="contained" color="success">
                         Dashboard
                     </Button>
                 }

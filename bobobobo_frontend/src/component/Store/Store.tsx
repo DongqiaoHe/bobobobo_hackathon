@@ -116,9 +116,7 @@ export default function Store() {
   const url = window.location.href
 
   return (
-    <ThemeProvider theme={defaultTheme}>
-      <CssBaseline />
-
+    <>
       <Header
         title={'Our Store'}
         left={
@@ -156,6 +154,6 @@ export default function Store() {
           description="Please waiting!"
         />
       </Box>
-    </ThemeProvider>
+    </>
   )
 }
