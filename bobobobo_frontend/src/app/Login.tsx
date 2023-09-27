@@ -43,10 +43,10 @@ export default function Login() {
       event.preventDefault()
       const data = new FormData(event.currentTarget);
       const username = data.get('username');
-      const Password = data.get('Password');
+      const password = data.get('password');
       const loginResponse = await login(
 username !== null ? username.toString() : '',
-Password !== null ? Password.toString() : '',
+password !== null ? password.toString() : '',
       );
       if (loginResponse.status === StatusCodes.OK) {
         const token = loginResponse.data.token;
@@ -130,7 +130,7 @@ Password !== null ? Password.toString() : '',
               required
               fullWidth
               name="password"
-              label="Password"
+              label="password"
               type="password"
               id="password"
               autoComplete="current-password"

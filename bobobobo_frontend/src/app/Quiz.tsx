@@ -58,11 +58,11 @@ export function QuizScreen() {
   const theme = useTheme();
 
   const postQuizResult = (correct:number, incorrectNum:number) => {
-    axios.post(
-      "/api/quiz/check",
+    axios.patch(
+      "/quiz/check",
       {
-        "correct_num": correct,
-        "incorrect_num": incorrectNum
+        "quiz_correct": correct,
+        "quiz_wrong": incorrectNum
       }
     ).catch(e => {
       console.log(e.response)
