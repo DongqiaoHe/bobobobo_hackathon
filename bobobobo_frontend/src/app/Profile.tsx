@@ -29,7 +29,7 @@ export default function Profile() {
   return (
     <>
       <Header
-        title="Earth Protector"
+        title="Profile"
         left={
           <Button href="/landing" variant="text">
             Dashboard

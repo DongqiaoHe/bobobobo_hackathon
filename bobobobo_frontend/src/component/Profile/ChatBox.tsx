@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { askgpt } from '../../utils/chatApi' // 请确保路径正确
+import { Button, TextField } from '@mui/material';
 
 interface MessageProps {
   content: string;
@@ -12,8 +13,9 @@ const ChatBox: React.FC = () => {
 
   const sendMessage = async () => { // 注意 async 关键字
     try {
-      const response = await askgpt(input); // 使用 input 而不是 message
       console.log("bobobooboboboobobobo")
+      const response = await askgpt(input); // 使用 input 而不是 message
+      console.log("--------")
       console.log("Response:"+response);
       // Process the response as needed
       
@@ -22,6 +24,8 @@ const ChatBox: React.FC = () => {
       setMessages(prevMessages => [...prevMessages, { content: response.data.response, id: Date.now() }]);
       setInput(''); // 清空输入框
     } catch (error) {
+      console.log("}}++++++++++++")
+
       console.error("Error sending message:", error);
     }
   };
@@ -34,14 +38,15 @@ const ChatBox: React.FC = () => {
         ))}
       </div>
       <div className="input-section">
-        <input 
+      <Button onClick={sendMessage}>Ask protector</Button>
+        <TextField 
           value={input} 
           onChange={e => setInput(e.target.value)} 
-          placeholder="输入消息..."
+          placeholder="Please input some verbs..."
         />
-        <button onClick={sendMessage}>发送</button>
       </div>
     </div>
+    
   );
 };
 
