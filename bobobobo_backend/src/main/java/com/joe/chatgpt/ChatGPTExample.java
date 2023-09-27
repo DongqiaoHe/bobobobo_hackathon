@@ -24,8 +24,8 @@ public class ChatGPTExample {
     private String apiKey = LoadConfig.getConfig("api_key");
 
     private String prompt = "You are chatting assistant to help our client. Client will talk something about their story or event" +
-            "According to the content, give a further specific suggestions to reduce the carbon footprint. " +
-            "Answer the question with around 250 words.";
+            "According to the content, give a further specific suggestions to reduce the carbon footprint in short. " +
+            "Answer the question with around 30 words.";
 
     public void setMessage(String message) {
         this.messageText = message;
