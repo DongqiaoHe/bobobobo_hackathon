@@ -10,6 +10,7 @@ import Link from '@mui/material/Link'
 import Chart from '../component/Profile/Chart'
 import BarChart from '../component/Profile/BarChart'
 import Orders from '../component/Profile/Orders'
+import ChatBox from '../component/Profile/ChatBox'
 import Header from '../component/Header'
 import { Button } from '@mui/material'
 import { PageContainer } from '../component/PageContainer'
@@ -77,6 +78,17 @@ export default function Profile() {
                 height: 300,
               }}>
               <BarChart />
+            </Paper>
+          </Grid>
+          <Grid item xs={12} md={5} lg={3}>
+            <Paper
+              sx={{
+                p: 2,
+                display: 'flex',
+                flexDirection: 'column',
+                height: 300,
+              }}>
+              <ChatBox />
             </Paper>
           </Grid>
         </Grid>
