@@ -36,7 +36,7 @@ export default function Profile() {
           </Button>
         }
         right={
-          <Button href="/" variant="outlined">
+          <Button href="/" variant="contained">
             Log Out
           </Button>
         }
