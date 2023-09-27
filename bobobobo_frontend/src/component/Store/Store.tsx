@@ -29,9 +29,9 @@ import img_Organic_Cotton_T_Shirt from './image/Organic_Cotton_T-Shirt.jpg'
 import img_Manual_Coffee_Grinder from './image/Manual_Coffee_Grinder.jpg'
 
 const mainFeaturedPost = {
-  title: 'Biodegradable Cleaning Agent',
+  title: 'Eco-friendly Store',
   description:
-    'Only $5! Free from harmful chemicals and environmentally friendly, suitable for household cleaning.',
+    'You can buy eco-friendly goods here and thank you for your contribution to the environment!',
   image: img_biodegradable_cleaning_agent,
   imageText: 'main image description',
   linkText: 'Continue reading…',
