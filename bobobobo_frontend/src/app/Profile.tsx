@@ -41,14 +41,22 @@ export default function Profile() {
       />
       <PageContainer>
         <Grid container spacing={3}>
-          {/* My Info */}
-          <Grid item xs={12}>
-            <Paper sx={{ p: 2, display: 'flex', flexDirection: 'column' }}>
-              <Orders />
+          <Grid container spacing={3}>
+            {/* My Info */}
+            <Grid item xs={9}>
+              <Paper sx={{ p: 2, display: 'flex', flexDirection: 'column' }}>
+                <Orders />
+              </Paper>
+            </Grid>
+          <Grid item xs={3}>
+            <Paper sx={{ p: 2, flexDirection: 'column' }}>
+              <Typography variant="h6" >
+                Sustainability Q&A
+              </Typography>
             </Paper>
           </Grid>
           {/* Chart */}
-          <Grid item xs={12} md={7} lg={9}>
+          <Grid item xs={6}>
             <Paper
               sx={{
                 p: 2,
@@ -60,7 +68,7 @@ export default function Profile() {
             </Paper>
           </Grid>
           {/* Bar Chart */}
-          <Grid item xs={12} md={5} lg={3}>
+          <Grid item xs={3}>
             <Paper
               sx={{
                 p: 2,
@@ -72,6 +80,7 @@ export default function Profile() {
             </Paper>
           </Grid>
         </Grid>
+      </Grid>
       </PageContainer>
     </>
   )
